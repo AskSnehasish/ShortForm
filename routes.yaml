@@ -1,0 +1,18 @@
+routes:
+  /about/:
+    template: custom-about
+    data: page.about
+  /contact/:
+    template: custom-contact
+    data: page.contact
+  /archive/:
+    template: custom-archive
+
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

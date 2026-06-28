@@ -1,0 +1,50 @@
+{
+  "name": "shortform",
+  "version": "1.0.0",
+  "description": "A minimalist Ghost theme focused on typography and reading experience.",
+  "author": {
+    "name": "Your Name",
+    "email": "you@example.com",
+    "url": "https://example.com"
+  },
+  "config": {
+    "posts_per_page": 10,
+    "image_sizes": {
+      "xs": {
+        "width": 160
+      },
+      "sm": {
+        "width": 320
+      },
+      "md": {
+        "width": 600
+      },
+      "lg": {
+        "width": 1200
+      },
+      "xl": {
+        "width": 2000
+      }
+    },
+    "custom": {
+      "home_tags": {
+        "type": "text",
+        "default": ""
+      }
+    }
+  },
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "scripts": {
+    "zip": "zip -r shortform.zip . -x '*.git*' -x 'node_modules/*' -x '.DS_Store'"
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "minimal",
+    "typography",
+    "reading"
+  ],
+  "license": "MIT"
+}

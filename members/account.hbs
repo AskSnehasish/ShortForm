@@ -1,0 +1,44 @@
+{{!< default}}
+
+<div class="container">
+  <article class="post-content" style="max-width: 480px; margin: 0 auto;">
+    <h1>{{t "Account"}}</h1>
+
+    {{#if @member}}
+      <div class="member-info" style="margin-bottom: var(--space-4);">
+        {{#if @member.name}}
+          <p><strong>{{@member.name}}</strong></p>
+        {{/if}}
+        <p class="text-muted text-sm">{{@member.email}}</p>
+        <p class="text-muted text-sm">
+          {{#if @member.paid}}
+            {{t "Paid member"}}
+          {{else if @member.paid}}
+            {{t "Complimentary member"}}
+          {{else}}
+            {{t "Free member"}}
+          {{/if}}
+        </p>
+      </div>
+
+      <form class="members-form" data-members-form="logout" aria-label="{{t "Logout"}}">
+        <button class="btn" type="submit">{{t "Logout"}}</button>
+      </form>
+
+      {{#if @member.paid}}
+        <form class="members-form" data-members-form="cancel" style="margin-top: var(--space-2);">
+          <button class="btn" type="submit">{{t "Cancel subscription"}}</button>
+        </form>
+      {{/if}}
+
+      <div class="newsletter-success" data-members-success style="display:none; margin-top: var(--space-2);"></div>
+      <div class="newsletter-error" data-members-error style="display:none; margin-top: var(--space-2);"></div>
+    {{else}}
+      <p class="text-muted">{{t "You are not signed in."}}</p>
+      <div class="member-actions" style="margin-top: var(--space-3);">
+        <a class="btn btn-primary" href="{{@site.url}}/signin/">{{t "Sign in"}}</a>
+        <a class="btn" href="{{@site.url}}/signup/" style="margin-left: var(--space-1);">{{t "Sign up"}}</a>
+      </div>
+    {{/if}}
+  </article>
+</div>

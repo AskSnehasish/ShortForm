@@ -1,0 +1,17 @@
+{{!< default}}
+
+<div class="container">
+  {{!-- Filter home page by tag slugs: set home_tags in Ghost Admin → Settings → Theme.
+      Enter comma-separated slugs, e.g. leadership,design. Leave empty to show all. --}}
+  {{#if @custom.home_tags}}
+    {{#get "posts" limit=1 include="tags,authors" filter="tags:[{{@custom.home_tags}}]"}}
+      {{#foreach posts}}{{> "post-full"}}{{/foreach}}{{> "pagination"}}
+    {{/get}}
+  {{else}}
+    {{#get "posts" limit=1 include="tags,authors"}}
+      {{#foreach posts}}{{> "post-full"}}{{/foreach}}{{> "pagination"}}
+    {{/get}}
+  {{/if}}
+
+  {{> "newsletter"}}
+</div>

@@ -1,0 +1,32 @@
+{{#if authors}}
+  {{#foreach authors}}
+  <div class="author-box" role="complementary" aria-label="{{t "About the author"}}">
+    <div class="author-box-avatar">
+      {{#if profile_image}}
+        <img src="{{profile_image}}" alt="{{name}}" loading="lazy" />
+      {{else}}
+        <img src="{{asset "assets/images/avatar-placeholder.svg"}}" alt="" loading="lazy" />
+      {{/if}}
+    </div>
+    <div class="author-box-info">
+      <div class="author-box-name">
+        <a href="{{url}}">{{name}}</a>
+      </div>
+      {{#if bio}}
+        <p class="author-box-bio">{{bio}}</p>
+      {{/if}}
+      <div class="author-box-social">
+        {{#if website}}
+          <a href="{{website}}" target="_blank" rel="noopener noreferrer">{{t "Website"}}</a>
+        {{/if}}
+        {{#if facebook}}
+          <a href="{{facebook_url}}" target="_blank" rel="noopener noreferrer">{{t "Facebook"}}</a>
+        {{/if}}
+        {{#if twitter}}
+          <a href="{{twitter_url}}" target="_blank" rel="noopener noreferrer">{{t "Twitter"}}</a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  {{/foreach}}
+{{/if}}

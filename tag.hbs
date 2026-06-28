@@ -1,0 +1,12 @@
+{{!< default}}
+
+<div class="container">
+  <header class="tag-header">
+    <h1 class="tag-name">{{tag.name}}</h1>
+    {{#if tag.description}}
+      <p class="tag-description">{{tag.description}}</p>
+    {{/if}}
+  </header>
+
+  {{#foreach posts}}{{> "post-full"}}{{/foreach}}{{> "pagination"}}
+</div>

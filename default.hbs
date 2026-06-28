@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}" class="{{body_class}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{meta_title}}</title>
+
+  {{#if @site.icon}}
+    <link rel="icon" href="{{@site.icon}}" type="image/png">
+  {{else}}
+    <link rel="icon" href="{{asset "assets/images/favicon.svg"}}" type="image/svg+xml">
+  {{/if}}
+  <link rel="stylesheet" href="{{asset "assets/css/variables.css"}}">
+  <link rel="stylesheet" href="{{asset "assets/css/base.css"}}">
+  <link rel="stylesheet" href="{{asset "assets/css/layout.css"}}">
+  <link rel="stylesheet" href="{{asset "assets/css/typography.css"}}">
+  <link rel="stylesheet" href="{{asset "assets/css/components.css"}}">
+  <link rel="stylesheet" href="{{asset "assets/css/utilities.css"}}">
+  <link rel="stylesheet" href="{{asset "assets/css/dark.css"}}">
+
+  {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+  <div class="skip-to-content">
+    <a href="#main-content">{{t "Skip to content"}}</a>
+  </div>
+
+  <div class="site-wrap">
+    {{> "header"}}
+
+    <main id="main-content" class="site-main" role="main">
+      {{{body}}}
+    </main>
+
+    {{> "footer"}}
+  </div>
+
+  {{!-- Search overlay --}}
+  <div class="search-overlay" data-search-overlay aria-hidden="true"></div>
+  <div class="search-modal" data-search-modal role="dialog" aria-label="{{t "Search"}}">
+    <label class="sr-only" for="search-input">{{t "Search"}}</label>
+    <input
+      id="search-input"
+      class="search-modal-input"
+      data-search-input
+      type="text"
+      placeholder="{{t "Search posts..."}}"
+      autocomplete="off"
+    />
+    <div class="search-modal-results" data-search-results></div>
+  </div>
+
+  {{!-- Reading progress bar --}}
+  <div class="reading-progress" data-progress-bar role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+  <script src="{{asset "assets/js/main.js"}}"></script>
+
+  {{ghost_foot}}
+</body>
+</html>

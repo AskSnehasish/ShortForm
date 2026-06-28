@@ -1,0 +1,26 @@
+{{!< default}}
+
+<div class="container">
+  <h1>{{t "Archive"}}</h1>
+
+  {{#get "posts" limit="all" include="tags,authors" order="published_at desc"}}
+    <div class="archive-list">
+      {{#foreach posts}}
+        {{#if @first}}
+          {{#match date format="YYYY"}}
+            {{else}}
+            <h2 class="archive-year">{{date format="YYYY"}}</h2>
+          {{/match}}
+        {{else}}
+          {{#has separator}}
+            <h2 class="archive-year">{{date format="YYYY"}}</h2>
+          {{/has}}
+        {{/if}}
+        <div class="archive-item">
+          <span class="archive-item-date">{{date format="MMM D"}}</span>
+          <span class="archive-item-title"><a href="{{url}}">{{title}}</a></span>
+        </div>
+      {{/foreach}}
+    </div>
+  {{/get}}
+</div>

@@ -1,0 +1,12 @@
+{{#if toc}}
+<aside class="toc" aria-labelledby="toc-title">
+  <h2 class="toc-title" id="toc-title">{{t "Table of Contents"}}</h2>
+  <nav aria-label="{{t "Table of Contents"}}">
+    <ul class="toc-list" id="toc-list">
+      {{#foreach toc}}
+        <li class="toc-{{level}}"><a href="#{{id}}">{{label}}</a></li>
+      {{/foreach}}
+    </ul>
+  </nav>
+</aside>
+{{/if}}

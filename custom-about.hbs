@@ -1,0 +1,39 @@
+{{!< default}}
+
+{{#post}}
+<article class="post-content container" role="article" itemscope itemtype="https://schema.org/Article">
+  <header class="post-header">
+    <h1 itemprop="headline">{{title}}</h1>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    {{content}}
+  </div>
+
+  {{#if @site.members_enabled}}
+  <section class="newsletter-box" aria-labelledby="about-newsletter-title">
+    <h2 class="newsletter-title" id="about-newsletter-title">{{t "Stay in touch"}}</h2>
+    <p class="newsletter-description">{{t "Subscribe to get notified about new posts."}}</p>
+    <form class="newsletter-form" data-members-form="subscribe" aria-label="{{t "Newsletter signup"}}">
+      <label class="sr-only" for="about-newsletter-email">{{t "Email address"}}</label>
+      <input
+        class="form-input"
+        id="about-newsletter-email"
+        data-members-email
+        type="email"
+        placeholder="{{t "you@example.com"}}"
+        required
+        autocomplete="email"
+      />
+      <button class="btn btn-primary" type="submit">{{t "Subscribe"}}</button>
+    </form>
+    <div class="newsletter-success" data-members-success style="display:none;">
+      {{t "Thanks for subscribing!"}}
+    </div>
+    <div class="newsletter-error" data-members-error style="display:none;">
+      {{t "Something went wrong. Please try again."}}
+    </div>
+  </section>
+  {{/if}}
+</article>
+{{/post}}

@@ -1,0 +1,13 @@
+<nav class="pagination" role="navigation" aria-label="{{t "Pagination"}}">
+  {{#if prev}}
+    <a class="pagination-link" href="{{page_url prev}}">&larr; {{t "Previous"}}</a>
+  {{else}}
+    <span class="pagination-link" disabled>&larr; {{t "Previous"}}</span>
+  {{/if}}
+  <span class="pagination-info">{{t "Page"}} {{page}} {{t "of"}} {{pages}}</span>
+  {{#if next}}
+    <a class="pagination-link" href="{{page_url next}}">{{t "Next"}} &rarr;</a>
+  {{else}}
+    <span class="pagination-link" disabled>{{t "Next"}} &rarr;</span>
+  {{/if}}
+</nav>

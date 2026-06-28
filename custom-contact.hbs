@@ -1,0 +1,39 @@
+{{!< default}}
+
+{{#post}}
+<article class="post-content container" role="article" itemscope itemtype="https://schema.org/Article">
+  <header class="post-header">
+    <h1 itemprop="headline">{{title}}</h1>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    {{content}}
+  </div>
+
+  {{#if @site.members_enabled}}
+  <section aria-label="{{t "Contact form"}}">
+    <form class="contact-form" data-members-form="contact" aria-label="{{t "Contact form"}}" style="margin-top: var(--space-5);">
+      <div class="form-group">
+        <label class="form-label" for="contact-name">{{t "Name"}}</label>
+        <input class="form-input" id="contact-name" type="text" name="name" autocomplete="name" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="contact-email">{{t "Email"}}</label>
+        <input class="form-input" id="contact-email" type="email" name="email" autocomplete="email" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="contact-message">{{t "Message"}}</label>
+        <textarea class="form-input" id="contact-message" name="message" rows="5" required></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">{{t "Send"}}</button>
+      <div class="newsletter-success" data-members-success style="display:none; margin-top: var(--space-2);">
+        {{t "Message sent. We'll get back to you soon."}}
+      </div>
+      <div class="newsletter-error" data-members-error style="display:none; margin-top: var(--space-2);">
+        {{t "Something went wrong. Please try again."}}
+      </div>
+    </form>
+  </section>
+  {{/if}}
+</article>
+{{/post}}

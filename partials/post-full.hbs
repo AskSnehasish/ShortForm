@@ -1,0 +1,16 @@
+<article class="post-full" role="article">
+  <header class="post-header">
+    <h2 class="post-full-title"><a href="{{url}}">{{title}}</a></h2>
+    <div class="post-meta">
+      <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+      {{#if primary_tag}}
+        <span class="sep" aria-hidden="true">&middot;</span>
+        <a class="post-tag" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+      {{/if}}
+    </div>
+  </header>
+  <div class="post-content">{{content}}</div>
+</article>
+{{#if @last}}{{else}}<hr class="post-sep" aria-hidden="true">{{/if}}

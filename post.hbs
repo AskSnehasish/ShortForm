@@ -1,0 +1,90 @@
+{{!< default}}
+
+{{#post}}
+<article class="post-content container" role="article" itemscope itemtype="https://schema.org/Article">
+  <header class="post-header">
+    <h1 itemprop="headline">{{title}}</h1>
+
+    <div class="post-meta">
+      <time datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished">{{date format="MMM D, YYYY"}}</time>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+      {{#if primary_tag}}
+        <span class="sep" aria-hidden="true">&middot;</span>
+        <a class="post-tag" href="{{primary_tag.url}}" itemprop="keywords">{{primary_tag.name}}</a>
+      {{/if}}
+      {{#if tags}}
+        <span class="sep" aria-hidden="true">&middot;</span>
+        <div class="post-tags">
+          {{#foreach tags limit="5"}}
+            <a class="post-tag" href="{{url}}">{{name}}</a>{{#if @last}}{{else}}, {{/if}}
+          {{/foreach}}
+        </div>
+      {{/if}}
+    </div>
+  </header>
+
+  {{> "toc"}}
+
+  <div class="post-content" itemprop="articleBody">
+    {{content}}
+  </div>
+
+  {{> "author-box"}}
+
+  {{> "related-posts"}}
+
+  <nav class="post-navigation" role="navigation" aria-label="{{t "Post navigation"}}">
+    <div class="post-navigation-item">
+      {{#prev_post}}
+        <span class="post-navigation-label">{{t "Previous post"}}</span>
+        <span class="post-navigation-title"><a href="{{url}}">{{title}}</a></span>
+      {{/prev_post}}
+    </div>
+    <div class="post-navigation-item post-navigation-item-next">
+      {{#next_post}}
+        <span class="post-navigation-label">{{t "Next post"}}</span>
+        <span class="post-navigation-title"><a href="{{url}}">{{title}}</a></span>
+      {{/next_post}}
+    </div>
+  </nav>
+
+  {{> "newsletter"}}
+
+  {{> "comments"}}
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{@site.title}}",
+    "url": "{{@site.url}}"{{#if @site.logo}},
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{@site.logo}}"
+    }{{/if}}
+  },
+  "author": {
+    "@type": "Person",
+    "name": "{{primary_author.name}}",
+    "url": "{{primary_author.url}}"
+  },
+  "headline": "{{title}}",
+  "url": "{{url}}",
+  "datePublished": "{{date format="YYYY-MM-DDTHH:mm:ss.SSSZ"}}",
+  "dateModified": "{{date format="YYYY-MM-DDTHH:mm:ss.SSSZ"}}"{{#if feature_image}},
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{feature_image}}"
+  }{{/if}},
+  "description": "{{excerpt}}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{url}}"
+  }
+}
+</script>
+{{/post}}

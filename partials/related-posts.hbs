@@ -1,0 +1,17 @@
+{{#if related_posts}}
+<section class="related-posts" aria-labelledby="related-posts-title">
+  <h2 class="related-posts-title" id="related-posts-title">{{t "Related posts"}}</h2>
+  <div class="related-posts-grid">
+    {{#foreach related_posts limit="4"}}
+    <article class="related-post">
+      <h3 class="related-post-title"><a href="{{url}}">{{title}}</a></h3>
+      <div class="related-post-meta">
+        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+        <span aria-hidden="true">&middot;</span>
+        <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+      </div>
+    </article>
+    {{/foreach}}
+  </div>
+</section>
+{{/if}}

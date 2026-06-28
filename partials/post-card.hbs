@@ -1,0 +1,19 @@
+<article class="post-card" role="article">
+  <header class="post-card-header">
+    <h2 class="post-card-title">
+      <a href="{{url}}" aria-label="{{t "Read: "}}{{title}}">{{title}}</a>
+    </h2>
+    <div class="post-card-meta">
+      <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+      {{#if primary_tag}}
+        <span class="sep" aria-hidden="true">&middot;</span>
+        <a class="post-card-tag" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+      {{/if}}
+    </div>
+  </header>
+  {{#if custom_excerpt}}
+    <div class="post-card-excerpt">{{custom_excerpt}}</div>
+  {{/if}}
+</article>
