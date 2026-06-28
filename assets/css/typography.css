@@ -121,6 +121,8 @@ small {
 }
 
 .post-content a {
+
+    color: var(--color-text-muted);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: var(--color-link-underline);
@@ -128,7 +130,7 @@ small {
 }
 
 .post-content a:hover {
-  text-decoration-color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
 }
 
 .post-content > img {

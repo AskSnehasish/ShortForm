@@ -18,6 +18,24 @@
               <line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
           </button>
+          {{#if @site.members_enabled}}
+            {{#unless @member}}
+              <a class="subscribe-icon-btn" id="nav-subscribe" href="{{@site.url}}/#/portal/signup" aria-label="{{t "Subscribe"}}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
+                  <path d="M4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
+                </svg>
+              </a>
+            {{/unless}}
+            {{#if @member}}
+              <a class="subscribe-icon-btn" id="nav-subscribe" href="{{@site.url}}/#/portal/account" aria-label="{{t "Account"}}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/>
+                  <path d="M4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
+                </svg>
+              </a>
+            {{/if}}
+          {{/if}}
           <button class="theme-toggle" data-theme-toggle type="button" aria-label="{{t "Toggle theme"}}">
             <span class="icon-sun" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -49,14 +67,6 @@
           </button>
           <div class="nav-more-dropdown" data-nav-dropdown></div>
         </div>
-        {{#if @site.members_enabled}}
-          {{#unless @member}}
-            <a class="nav-link" id="nav-subscribe" href="{{@site.url}}/#/portal/signup">{{t "Subscribe"}}</a>
-          {{/unless}}
-          {{#if @member}}
-            <a class="nav-link" id="nav-subscribe" href="{{@site.url}}/#/portal/account">{{t "Account"}}</a>
-          {{/if}}
-        {{/if}}
       </nav>
     </div>
   </div>

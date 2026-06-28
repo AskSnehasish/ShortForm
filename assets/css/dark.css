@@ -85,7 +85,7 @@
 }
 
 .dark-mode .newsletter-submit:hover {
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
   border-color: var(--color-accent, var(--color-text));
 }
 

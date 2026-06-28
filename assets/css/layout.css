@@ -71,11 +71,37 @@
 }
 
 .search-icon-btn:hover {
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
   border-color: var(--color-border);
 }
 
 .search-icon-btn:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.subscribe-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.subscribe-icon-btn:hover {
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.subscribe-icon-btn:focus-visible {
   outline: 2px solid var(--color-text);
   outline-offset: 2px;
 }
@@ -153,15 +179,14 @@ h1.site-logo {
   .site-nav ul li + li {
     margin-left: 24px;
   }
-  #nav-subscribe {
-    display: none;
-  }
 }
 
 .site-nav a,
 .site-nav ul li a,
 .nav-link {
   position: relative;
+  display: inline-flex;
+  align-items: center;
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   background: none;
@@ -190,6 +215,8 @@ h1.site-logo {
 
 .nav-link {
   position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav-link::after {
@@ -222,7 +249,7 @@ h1.site-logo {
 .site-nav a:hover,
 .site-nav ul li a:hover,
 .nav-link:hover {
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -264,7 +291,7 @@ h1.site-logo {
 }
 
 .site-footer a:hover {
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
 }
 
 .site-footer-nav {

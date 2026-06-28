@@ -6,10 +6,8 @@
      ========================================== */
 
   var metaAccent = document.querySelector('meta[name="ghost:site-accent"]');
-  var metaAccentBg = document.querySelector('meta[name="ghost:accent-bg"]');
   var metaScheme = document.querySelector('meta[name="ghost:color-scheme"]');
   var accentColor = (metaAccent && metaAccent.getAttribute('content')) || '#2563eb';
-  var accentBg = !(metaAccentBg && metaAccentBg.getAttribute('content') === 'false');
   var colorScheme = (metaScheme && metaScheme.getAttribute('content')) || 'light';
 
   /* ==========================================
@@ -42,6 +40,7 @@
   }
 
   function computeAccentProps() {
+    if (!accentColor) return;
     var r = hexToRgb(accentColor);
     if (!r) return;
     var hsl = rgbToHsl(r.r, r.g, r.b);
@@ -68,7 +67,7 @@
   var themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
   function applyAccent() {
-    if (!accentBg || html.classList.contains('dark-mode')) return;
+    if (!accentColor || html.classList.contains('dark-mode')) return;
     for (var p in accentProps) html.style.setProperty(p, accentProps[p]);
   }
 
@@ -101,7 +100,7 @@
       html.classList.remove('dark-mode');
       applyAccent();
       if (themeColorMeta) {
-        themeColorMeta.setAttribute('content', accentBg ? metaAccent.getAttribute('content') : '#ffffff');
+        themeColorMeta.setAttribute('content', accentColor || '#ffffff');
       }
     }
     localStorage.setItem('theme', theme);
@@ -454,7 +453,7 @@
     if (html.classList.contains('dark-mode')) {
       themeColorMeta.setAttribute('content', '#1a1a1a');
     } else {
-      themeColorMeta.setAttribute('content', accentBg ? metaAccent.getAttribute('content') : '#ffffff');
+      themeColorMeta.setAttribute('content', accentColor || '#ffffff');
     }
   }
 

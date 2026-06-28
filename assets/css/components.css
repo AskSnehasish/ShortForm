@@ -22,7 +22,7 @@
 
 .btn:hover {
   border-color: var(--color-accent, var(--color-text));
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -39,7 +39,7 @@
 
 .btn-primary:hover {
   background: transparent;
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
 }
 
 .btn-sm {
@@ -123,7 +123,7 @@ textarea.form-input {
 }
 
 .post-meta a:hover {
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
 }
 
 .post-tags {
@@ -145,7 +145,7 @@ textarea.form-input {
 }
 
 .post-tag:hover {
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -204,7 +204,7 @@ textarea.form-input {
 }
 
 .pagination-link:hover {
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -673,7 +673,7 @@ textarea.form-input {
 }
 
 .newsletter-submit:hover {
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
   border-color: var(--color-accent, var(--color-text));
 }
 
@@ -713,7 +713,7 @@ textarea.form-input {
 .comments-title {
   font-size: var(--text-lg);
   font-weight: 600;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-6);
 }
 
 .comments-placeholder {
@@ -1095,7 +1095,7 @@ textarea.form-input {
 }
 
 .theme-toggle:hover {
-  color: var(--color-accent, var(--color-text));
+  color: var(--color-text);
   border-color: var(--color-border);
 }
 

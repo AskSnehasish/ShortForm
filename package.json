@@ -35,10 +35,6 @@
         "type": "boolean",
         "default": true
       },
-      "accent_bg": {
-        "type": "boolean",
-        "default": true
-      },
       "color_scheme": {
         "type": "select",
         "options": ["light", "dark", "auto"],
