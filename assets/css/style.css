@@ -1885,6 +1885,66 @@ textarea.form-input {
   padding: var(--space-4) var(--content-padding) var(--space-8);
 }
 
+.tag-year-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  margin-bottom: var(--space-6);
+}
+
+.tag-year-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  padding: 2px 0;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: color 250ms ease;
+}
+
+.tag-year-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-accent, var(--color-text));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms ease;
+}
+
+.tag-year-link:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.tag-year-link:hover::after {
+  transform: scaleX(1);
+}
+
+.tag-year-link.active {
+  color: var(--color-text);
+}
+
+.tag-year-link.active::after {
+  transform: scaleX(1);
+}
+
+.tag-year-link:focus-visible {
+  outline: 2px solid var(--color-accent, var(--color-text));
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 .archive-header {
   margin-bottom: var(--space-6);
 }

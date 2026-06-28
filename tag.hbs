@@ -28,38 +28,84 @@
 (function() {
   var list = document.querySelector('[data-archive]');
   if (!list) return;
-  var posts = list.querySelectorAll('.archive-post');
-  if (!posts.length) return;
-  var lastYear, lastMonth, lastDate;
+  var postNodes = list.querySelectorAll('.archive-post');
+  if (!postNodes.length) return;
+  var posts = Array.prototype.slice.call(postNodes);
   var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var monthsShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  for (var i = 0; i < posts.length; i++) {
-    var post = posts[i];
-    var year = post.getAttribute('data-year');
-    var month = post.getAttribute('data-month');
-    var date = post.getAttribute('data-date');
-    if (year !== lastYear) {
-      var y = document.createElement('h2');
-      y.className = 'archive-year';
-      y.textContent = year;
-      list.insertBefore(y, post);
-      lastYear = year;
+
+  var years = [];
+  var yearMap = {};
+  posts.forEach(function(p) {
+    var y = p.getAttribute('data-year');
+    if (!yearMap[y]) {
+      yearMap[y] = true;
+      years.push(y);
     }
-    if (month !== lastMonth) {
-      var m = document.createElement('h3');
-      m.className = 'archive-month';
-      m.textContent = months[parseInt(month.split('-')[1], 10) - 1];
-      list.insertBefore(m, post);
-      lastMonth = month;
+  });
+
+  var activeYear = years[0];
+
+  var nav = document.createElement('nav');
+  nav.className = 'tag-year-nav';
+  years.forEach(function(y) {
+    var a = document.createElement('a');
+    a.href = '#';
+    a.textContent = y;
+    a.className = 'tag-year-link';
+    if (y === activeYear) a.classList.add('active');
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (a.classList.contains('active')) return;
+      nav.querySelectorAll('.tag-year-link').forEach(function(l) { l.classList.remove('active'); });
+      a.classList.add('active');
+      activeYear = y;
+      renderPosts(y);
+    });
+    nav.appendChild(a);
+  });
+  list.parentNode.insertBefore(nav, list);
+
+  function renderPosts(year) {
+    var headings = list.querySelectorAll('.archive-year, .archive-month, .archive-date');
+    for (var h = headings.length - 1; h >= 0; h--) {
+      headings[h].remove();
     }
-    if (date !== lastDate) {
-      var d = document.createElement('h4');
-      d.className = 'archive-date';
-      var parts = date.split('-');
-      d.innerHTML = '<time datetime="' + date + '">' + monthsShort[parseInt(parts[1], 10) - 1] + ' ' + parseInt(parts[2], 10) + ', ' + parts[0] + '</time>';
-      list.insertBefore(d, post);
-      lastDate = date;
-    }
+    var lastYear, lastMonth, lastDate;
+    posts.forEach(function(post) {
+      var py = post.getAttribute('data-year');
+      var pm = post.getAttribute('data-month');
+      var pd = post.getAttribute('data-date');
+      if (py === year) {
+        post.style.display = '';
+        if (py !== lastYear) {
+          var yh = document.createElement('h2');
+          yh.className = 'archive-year';
+          yh.textContent = py;
+          list.insertBefore(yh, post);
+          lastYear = py;
+        }
+        if (pm !== lastMonth) {
+          var mh = document.createElement('h3');
+          mh.className = 'archive-month';
+          mh.textContent = months[parseInt(pm.split('-')[1], 10) - 1];
+          list.insertBefore(mh, post);
+          lastMonth = pm;
+        }
+        if (pd !== lastDate) {
+          var dh = document.createElement('h4');
+          dh.className = 'archive-date';
+          var parts = pd.split('-');
+          dh.innerHTML = '<time datetime="' + pd + '">' + monthsShort[parseInt(parts[1], 10) - 1] + ' ' + parseInt(parts[2], 10) + ', ' + parts[0] + '</time>';
+          list.insertBefore(dh, post);
+          lastDate = pd;
+        }
+      } else {
+        post.style.display = 'none';
+      }
+    });
   }
+
+  renderPosts(activeYear);
 })();
 </script>
