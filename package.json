@@ -34,6 +34,19 @@
       "show_credit_line": {
         "type": "boolean",
         "default": true
+      },
+      "accent_color": {
+        "type": "color",
+        "default": "#2563eb"
+      },
+      "tinted_bg": {
+        "type": "boolean",
+        "default": true
+      },
+      "color_scheme": {
+        "type": "select",
+        "options": ["light", "dark", "auto"],
+        "default": "light"
       }
     }
   },

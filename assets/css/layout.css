@@ -71,7 +71,7 @@
 }
 
 .search-icon-btn:hover {
-  color: var(--color-text);
+  color: var(--color-accent, var(--color-text));
   border-color: var(--color-border);
 }
 
@@ -182,7 +182,7 @@ h1.site-logo {
   left: 0;
   right: 0;
   height: 1px;
-  background: var(--color-text);
+  background: var(--color-accent, var(--color-text));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 250ms ease;
@@ -199,17 +199,22 @@ h1.site-logo {
   left: 0;
   right: 0;
   height: 1px;
-  background: var(--color-text);
+  background: var(--color-accent, var(--color-text));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 250ms ease;
+}
+
+.site-nav a[aria-current="page"],
+.site-nav ul li a[aria-current="page"] {
+  color: var(--color-accent, var(--color-text));
 }
 
 .site-nav a:focus-visible,
 .site-nav ul li a:focus-visible,
 .nav-link:focus-visible,
 .nav-more-toggle:focus-visible {
-  outline: 2px solid var(--color-text);
+  outline: 2px solid var(--color-accent, var(--color-text));
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
@@ -217,7 +222,7 @@ h1.site-logo {
 .site-nav a:hover,
 .site-nav ul li a:hover,
 .nav-link:hover {
-  color: var(--color-text);
+  color: var(--color-accent, var(--color-text));
   text-decoration: none;
 }
 
@@ -258,7 +263,7 @@ h1.site-logo {
 }
 
 .site-footer a:hover {
-  color: var(--color-text);
+  color: var(--color-accent, var(--color-text));
 }
 
 .site-footer-nav {

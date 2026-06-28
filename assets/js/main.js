@@ -2,16 +2,87 @@
   'use strict';
 
   /* ==========================================
+     Settings from Ghost Admin
+     ========================================== */
+
+  var metaAccent = document.querySelector('meta[name="ghost:accent-color"]');
+  var metaTinted = document.querySelector('meta[name="ghost:tinted-bg"]');
+  var metaScheme = document.querySelector('meta[name="ghost:color-scheme"]');
+  var accentColor = (metaAccent && metaAccent.getAttribute('content')) || '#2563eb';
+  var tintedBg = !(metaTinted && metaTinted.getAttribute('content') === 'false');
+  var colorScheme = (metaScheme && metaScheme.getAttribute('content')) || 'light';
+
+  /* ==========================================
+     Accent-based Background (Light Mode)
+     ========================================== */
+
+  var html = document.documentElement;
+  var tintedProps = {};
+
+  function hexToRgb(hex) {
+    var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return m ? { r: parseInt(m[1], 16), g: parseInt(m[2], 16), b: parseInt(m[3], 16) } : null;
+  }
+
+  function rgbToHsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+    if (max === min) { h = s = 0; }
+    else {
+      var d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+        case g: h = ((b - r) / d + 2) / 6; break;
+        case b: h = ((r - g) / d + 4) / 6; break;
+      }
+    }
+    return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+  }
+
+  function computeTintedProps() {
+    var r = hexToRgb(accentColor);
+    if (!r) return;
+    var hsl = rgbToHsl(r.r, r.g, r.b);
+    var h = hsl.h, s = hsl.s;
+    tintedProps = {
+      '--color-bg': 'hsl(' + h + ', ' + Math.min(s * 0.4, 8) + '%, 97%)',
+      '--color-border': 'hsl(' + h + ', ' + Math.min(s * 0.6, 12) + '%, 92%)',
+      '--color-selection': 'hsl(' + h + ', 40%, 88%)',
+      '--color-link-underline': 'hsl(' + h + ', 60%, 40%, 0.2)'
+    };
+  }
+
+  // Pre-compute tinted values
+  computeTintedProps();
+
+  // Always set accent color (works in all modes)
+  var r = hexToRgb(accentColor);
+  if (r) {
+    html.style.setProperty('--color-accent', accentColor);
+  }
+
+  function applyTinted() {
+    if (!tintedBg || html.classList.contains('dark-mode')) return;
+    for (var p in tintedProps) html.style.setProperty(p, tintedProps[p]);
+  }
+
+  function removeTinted() {
+    for (var p in tintedProps) html.style.removeProperty(p);
+  }
+
+  /* ==========================================
      Dark Mode
      ========================================== */
 
-  const themeToggle = document.querySelector('[data-theme-toggle]');
-  const html = document.documentElement;
+  var themeToggle = document.querySelector('[data-theme-toggle]');
 
   function getPreferredTheme() {
-    const stored = localStorage.getItem('theme');
+    var stored = localStorage.getItem('theme');
     if (stored) return stored;
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (colorScheme === 'dark') return 'dark';
+    if (colorScheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
     return 'light';
@@ -20,14 +91,16 @@
   function setTheme(theme) {
     if (theme === 'dark') {
       html.classList.add('dark-mode');
+      removeTinted();
     } else {
       html.classList.remove('dark-mode');
+      applyTinted();
     }
     localStorage.setItem('theme', theme);
   }
 
   function toggleTheme() {
-    const current = html.classList.contains('dark-mode') ? 'dark' : 'light';
+    var current = html.classList.contains('dark-mode') ? 'dark' : 'light';
     setTheme(current === 'dark' ? 'light' : 'dark');
   }
 
@@ -40,7 +113,7 @@
 
   // Listen for system preference changes
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-    if (!localStorage.getItem('theme')) {
+    if (!localStorage.getItem('theme') && colorScheme === 'auto') {
       setTheme(e.matches ? 'dark' : 'light');
     }
   });

@@ -85,8 +85,8 @@
 }
 
 .dark-mode .newsletter-submit:hover {
-  color: var(--color-text);
-  border-color: var(--color-text);
+  color: var(--color-accent, var(--color-text));
+  border-color: var(--color-accent, var(--color-text));
 }
 
 .dark-mode .search-result-item:hover {
