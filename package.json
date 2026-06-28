@@ -46,7 +46,12 @@
     "ghost": ">=5.0.0"
   },
   "scripts": {
-    "zip": "zip -r shortform.zip . -x '*.git*' -x 'node_modules/*' -x '.DS_Store'"
+    "build": "node scripts/build.js",
+    "zip": "npm run build && zip -r shortform.zip . -x '*.git*' -x 'node_modules/*' -x '.DS_Store'",
+    "dev": "npx csso assets/css/style.css assets/css/style.min.css --watch"
+  },
+  "devDependencies": {
+    "csso": "^5.0.5"
   },
   "keywords": [
     "ghost",

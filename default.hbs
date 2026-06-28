@@ -11,23 +11,78 @@
   {{else}}
     <link rel="icon" href="{{asset "assets/images/favicon.svg"}}" type="image/svg+xml">
   {{/if}}
-  <link rel="stylesheet" href="{{asset "assets/css/variables.css"}}">
-  <link rel="stylesheet" href="{{asset "assets/css/base.css"}}">
-  <link rel="stylesheet" href="{{asset "assets/css/layout.css"}}">
-  <link rel="stylesheet" href="{{asset "assets/css/typography.css"}}">
-  <link rel="stylesheet" href="{{asset "assets/css/components.css"}}">
-  <link rel="stylesheet" href="{{asset "assets/css/utilities.css"}}">
-  <link rel="stylesheet" href="{{asset "assets/css/dark.css"}}">
+
+  <style>
+    :root{--color-bg:#fff;--color-text:#222;--color-text-secondary:#666;--color-text-muted:#888;--color-border:#ecececaf;--color-code-bg:#f6f6f6;--color-selection:#dbeafe;--color-link-underline:rgba(34,34,34,0.25);--font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--font-mono:'SF Mono','Fira Code','Fira Mono','Roboto Mono','Courier New',monospace;--text-xs:.75rem;--text-sm:.875rem;--text-base:1.1875rem;--text-lg:1.25rem;--text-xl:1.5rem;--text-2xl:1.75rem;--text-3xl:2rem;--text-4xl:2.5rem;--text-5xl:2.625rem;--space-1:8px;--space-2:16px;--space-3:24px;--space-4:32px;--space-5:40px;--space-6:48px;--space-7:64px;--space-8:80px;--space-9:96px;--content-width:700px;--content-wide:920px;--content-padding:24px;--leading-tight:1.3;--leading-normal:1.5;--leading-relaxed:1.65;--transition-fast:150ms ease;--transition-base:250ms ease;--radius-sm:2px;--radius-md:4px}
+    @media(max-width:768px){:root{--text-base:1.125rem;--text-4xl:2.125rem;--text-5xl:2.25rem;--content-padding:20px}}
+    @media(max-width:576px){:root{--text-base:1.0625rem;--text-4xl:1.75rem;--text-5xl:2rem;--content-padding:16px}}
+    @media(max-width:400px){:root{--text-base:1rem;--text-sm:.8125rem;--text-xs:.6875rem;--content-padding:12px}}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;text-size-adjust:100%}
+    body{font-family:var(--font-sans);font-size:var(--text-base);line-height:var(--leading-relaxed);color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+    ::selection{background:var(--color-selection)}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--color-accent,var(--color-link-underline))}
+    a:focus-visible{outline:2px solid var(--color-accent,var(--color-text));outline-offset:2px;border-radius:var(--radius-sm)}
+    ol,ul{padding-left:1.5em}
+    li{margin-bottom:.25em}
+    figure{margin:0}
+    hr{border:none;border-top:1px solid var(--color-border);margin:var(--space-6)0;opacity:.3}
+    table{width:100%;border-collapse:collapse;font-size:var(--text-sm)}
+    td,th{padding:var(--space-1) var(--space-2);border:1px solid var(--color-border);text-align:left}
+    th{font-weight:600;background:var(--color-code-bg)}
+    pre{font-family:var(--font-mono);font-size:var(--text-sm);line-height:1.6;overflow-x:auto}
+    code{font-family:var(--font-mono);font-size:.875em}
+    li>code,p>code{background:var(--color-code-bg);padding:1px 4px;border-radius:var(--radius-sm);font-size:.875em}
+    blockquote{border-left:2px solid var(--color-text);padding-left:var(--space-3);margin:var(--space-4)0;color:var(--color-text-secondary)}
+    button,input,select,textarea{font-family:inherit;font-size:inherit;line-height:inherit;color:inherit}
+    button{cursor:pointer;border:none;background:none}
+    iframe{max-width:100%}
+    canvas{display:block}
+    .skip-to-content a{position:absolute;top:-100%;left:var(--space-2);background:var(--color-text);color:var(--color-bg);padding:var(--space-1) var(--space-2);z-index:9999;font-size:var(--text-sm);border-radius:var(--radius-sm);transition:top var(--transition-fast)}
+    .skip-to-content a:focus{top:var(--space-2);text-decoration:none}
+    h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:first-child{margin-top:0}
+    h1{font-size:2.125rem;font-weight:700;line-height:1.15;letter-spacing:-.015em;text-wrap:balance;margin:0 0 18px}
+    h2{font-size:1.75rem;font-weight:700;line-height:1.2;letter-spacing:-.01em;text-wrap:balance;margin:52px 0 20px}
+    h3{font-size:1.5rem;font-weight:700;line-height:1.25;letter-spacing:-.01em;text-wrap:balance;margin:40px 0 20px}
+    h4{font-size:1.25rem;font-weight:700;line-height:1.3;text-wrap:balance;margin:32px 0 20px}
+    h5{font-size:1.125rem;font-weight:700;line-height:1.3;text-wrap:balance;margin:32px 0 20px}
+    h6{font-size:1rem;font-weight:700;line-height:1.3;text-wrap:balance;margin:32px 0 20px}
+    p{margin-bottom:28px;text-wrap:pretty}
+    p:last-child{margin-bottom:0}
+    .site-wrap{min-height:100vh;display:flex;flex-direction:column}
+    .site-main{flex:1;padding:40px 0 48px}
+    .container,.container-wide{max-width:var(--content-wide);margin:0 auto;padding:0 var(--content-padding)}
+    .site-header{padding:20px 0;border-bottom:1px solid var(--color-border);position:sticky;top:0;z-index:100;background:var(--color-bg);transition:transform 300ms ease}
+    .site-header-inner{display:flex;flex-direction:column;gap:var(--space-1)}
+    .site-header-top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-2)}
+    .site-header-actions{display:flex;align-items:center;gap:var(--space-1)}
+    .site-logo,h1.site-logo{font-size:var(--text-xl);font-weight:700;letter-spacing:-.02em;line-height:1.2;color:var(--color-text);margin:0}
+    .site-logo a{color:inherit;text-decoration:none}
+    .site-logo img{max-height:32px;width:auto}
+    .site-description{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:var(--leading-normal);margin:0}
+    .site-nav,.site-nav ul{display:flex;align-items:center;flex-wrap:wrap}
+    .site-nav{gap:0;column-gap:32px;row-gap:4px}
+    .site-nav ul{gap:32px;list-style:none;padding:0;margin:0}
+    .site-nav ul li{margin:0}
+    .reading-progress{position:fixed;top:0;left:0;width:0%;height:2px;background:var(--color-accent,var(--color-text));z-index:1000;transition:width 50ms linear}
+    .dark-mode{--color-bg:#1a1a1a;--color-text:#e4e4e4;--color-text-secondary:#a0a0a0;--color-text-muted:#6b6b6b;--color-border:#2e2e2e;--color-code-bg:#232323;--color-selection:#334155;--color-link-underline:rgba(228,228,228,0.25)}
+  </style>
+
+  <link rel="preload" href="{{asset "assets/css/style.min.css"}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{asset "assets/css/style.min.css"}}"></noscript>
 
   <meta name="ghost:site-accent" content="{{@site.accent_color}}">
   <meta name="ghost:color-scheme" content="{{@custom.color_scheme}}">
 
   <script>
     (function() {
+      var html = document.documentElement;
       var theme = localStorage.getItem('theme');
+      var schemeMeta = document.querySelector('meta[name="ghost:color-scheme"]');
+      var scheme = schemeMeta ? schemeMeta.getAttribute('content') : 'light';
       if (!theme) {
-        var schemeMeta = document.querySelector('meta[name="ghost:color-scheme"]');
-        var scheme = schemeMeta ? schemeMeta.getAttribute('content') : 'light';
         if (scheme === 'dark') theme = 'dark';
         else if (scheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
         else theme = 'light';
@@ -38,7 +93,38 @@
         meta.name = 'theme-color';
         document.head.appendChild(meta);
       }
-      meta.setAttribute('content', theme === 'dark' ? '#1a1a1a' : '{{@site.accent_color}}');
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        meta.setAttribute('content', '#1a1a1a');
+      } else {
+        meta.setAttribute('content', '{{@site.accent_color}}');
+        var accentColor = '{{@site.accent_color}}';
+        var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(accentColor);
+        if (m) {
+          var rr = parseInt(m[1], 16) / 255, rg = parseInt(m[2], 16) / 255, rb = parseInt(m[3], 16) / 255;
+          var max = Math.max(rr, rg, rb), min = Math.min(rr, rg, rb);
+          var h = 0, s = 0, l = (max + min) / 2;
+          if (max !== min) {
+            var d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            if (max === rr) h = ((rg - rb) / d + (rg < rb ? 6 : 0)) / 6;
+            else if (max === rg) h = ((rb - rr) / d + 2) / 6;
+            else h = ((rr - rg) / d + 4) / 6;
+          }
+          h = Math.round(h * 360); s = Math.round(s * 100); l = Math.round(l * 100);
+          var useLightText = l <= 60;
+          var ts = Math.min(s * 0.08, 6);
+          var tl = useLightText ? 92 : 14;
+          html.style.setProperty('--color-bg', accentColor);
+          html.style.setProperty('--color-text', 'hsl(' + h + ', ' + ts + '%, ' + tl + '%)');
+          html.style.setProperty('--color-text-secondary', 'hsl(' + h + ', ' + ts + '%, ' + (useLightText ? 80 : 28) + '%)');
+          html.style.setProperty('--color-text-muted', 'hsl(' + h + ', ' + ts + '%, ' + (useLightText ? 65 : 42) + '%)');
+          html.style.setProperty('--color-border', 'hsla(' + h + ', ' + Math.min(s * 0.25, 15) + '%, ' + (useLightText ? 50 : 70) + '%, 0.15)');
+          html.style.setProperty('--color-code-bg', 'hsl(' + h + ', ' + Math.min(s * 0.15, 8) + '%, ' + (useLightText ? 38 : 72) + '%)');
+          html.style.setProperty('--color-selection', 'hsl(' + h + ', 30%, ' + (useLightText ? 80 : 25) + ')');
+          html.style.setProperty('--color-link-underline', 'hsla(' + h + ', ' + ts + '%, ' + tl + '%, 0.25)');
+        }
+      }
     })();
   </script>
   {{ghost_head}}
