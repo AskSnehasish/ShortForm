@@ -67,7 +67,7 @@
   var themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
   function applyAccent() {
-    if (!accentColor || html.classList.contains('dark-mode')) return;
+    if (!accentColor) return;
     for (var p in accentProps) html.style.setProperty(p, accentProps[p]);
   }
 
@@ -97,8 +97,8 @@
       removeAccent();
       if (themeColorMeta) themeColorMeta.setAttribute('content', '#1a1a1a');
     } else {
-      html.classList.remove('dark-mode');
       applyAccent();
+      html.classList.remove('dark-mode');
       if (themeColorMeta) {
         themeColorMeta.setAttribute('content', accentColor || '#ffffff');
       }
