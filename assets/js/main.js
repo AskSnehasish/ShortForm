@@ -5,11 +5,11 @@
      Settings from Ghost Admin
      ========================================== */
 
-  var metaAccent = document.querySelector('meta[name="ghost:accent-color"]');
-  var metaTinted = document.querySelector('meta[name="ghost:tinted-bg"]');
+  var metaAccent = document.querySelector('meta[name="ghost:site-accent"]');
+  var metaAccentBg = document.querySelector('meta[name="ghost:accent-bg"]');
   var metaScheme = document.querySelector('meta[name="ghost:color-scheme"]');
   var accentColor = (metaAccent && metaAccent.getAttribute('content')) || '#2563eb';
-  var tintedBg = !(metaTinted && metaTinted.getAttribute('content') === 'false');
+  var accentBg = !(metaAccentBg && metaAccentBg.getAttribute('content') === 'false');
   var colorScheme = (metaScheme && metaScheme.getAttribute('content')) || 'light';
 
   /* ==========================================
@@ -17,7 +17,7 @@
      ========================================== */
 
   var html = document.documentElement;
-  var tintedProps = {};
+  var accentProps = {};
 
   function hexToRgb(hex) {
     var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -41,35 +41,39 @@
     return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
   }
 
-  function computeTintedProps() {
+  function computeAccentProps() {
     var r = hexToRgb(accentColor);
     if (!r) return;
     var hsl = rgbToHsl(r.r, r.g, r.b);
-    var h = hsl.h, s = hsl.s;
-    tintedProps = {
-      '--color-bg': 'hsl(' + h + ', ' + Math.min(s * 0.4, 8) + '%, 97%)',
-      '--color-border': 'hsl(' + h + ', ' + Math.min(s * 0.6, 12) + '%, 92%)',
-      '--color-selection': 'hsl(' + h + ', 40%, 88%)',
-      '--color-link-underline': 'hsl(' + h + ', 60%, 40%, 0.2)'
+    var h = hsl.h, s = hsl.s, l = hsl.l;
+    var useLightText = l <= 60;
+    var ts = Math.min(s * 0.08, 6);
+    var tl = useLightText ? 92 : 14;
+    var borderSat = Math.min(s * 0.25, 15);
+    var borderL = useLightText ? 45 : 62;
+    accentProps = {
+      '--color-bg': accentColor,
+      '--color-text': 'hsl(' + h + ', ' + ts + '%, ' + tl + '%)',
+      '--color-text-secondary': 'hsl(' + h + ', ' + ts + '%, ' + (useLightText ? 80 : 28) + '%)',
+      '--color-text-muted': 'hsl(' + h + ', ' + ts + '%, ' + (useLightText ? 65 : 42) + '%)',
+      '--color-border': 'hsl(' + h + ', ' + borderSat + '%, ' + borderL + '%)',
+      '--color-code-bg': 'hsl(' + h + ', ' + Math.min(s * 0.15, 8) + '%, ' + (useLightText ? '38' : '72') + '%)',
+      '--color-selection': 'hsl(' + h + ', 30%, ' + (useLightText ? 80 : 25) + ')',
+      '--color-link-underline': 'hsla(' + h + ', ' + ts + '%, ' + tl + '%, 0.25)'
     };
   }
 
-  // Pre-compute tinted values
-  computeTintedProps();
+  computeAccentProps();
 
-  // Always set accent color (works in all modes)
-  var r = hexToRgb(accentColor);
-  if (r) {
-    html.style.setProperty('--color-accent', accentColor);
+  var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+  function applyAccent() {
+    if (!accentBg || html.classList.contains('dark-mode')) return;
+    for (var p in accentProps) html.style.setProperty(p, accentProps[p]);
   }
 
-  function applyTinted() {
-    if (!tintedBg || html.classList.contains('dark-mode')) return;
-    for (var p in tintedProps) html.style.setProperty(p, tintedProps[p]);
-  }
-
-  function removeTinted() {
-    for (var p in tintedProps) html.style.removeProperty(p);
+  function removeAccent() {
+    for (var p in accentProps) html.style.removeProperty(p);
   }
 
   /* ==========================================
@@ -91,10 +95,14 @@
   function setTheme(theme) {
     if (theme === 'dark') {
       html.classList.add('dark-mode');
-      removeTinted();
+      removeAccent();
+      if (themeColorMeta) themeColorMeta.setAttribute('content', '#1a1a1a');
     } else {
       html.classList.remove('dark-mode');
-      applyTinted();
+      applyAccent();
+      if (themeColorMeta) {
+        themeColorMeta.setAttribute('content', accentBg ? metaAccent.getAttribute('content') : '#ffffff');
+      }
     }
     localStorage.setItem('theme', theme);
   }
@@ -436,4 +444,22 @@
       if (e.key === 'Escape') closeSearch();
     });
   }
+
+  /* ==========================================
+     Persist theme-color across chrome events
+     ========================================== */
+
+  function syncThemeColor() {
+    if (!themeColorMeta) return;
+    if (html.classList.contains('dark-mode')) {
+      themeColorMeta.setAttribute('content', '#1a1a1a');
+    } else {
+      themeColorMeta.setAttribute('content', accentBg ? metaAccent.getAttribute('content') : '#ffffff');
+    }
+  }
+
+  window.addEventListener('pageshow', syncThemeColor);
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) syncThemeColor();
+  });
 })();

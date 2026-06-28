@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="{{@site.accent_color}}">
   <title>{{meta_title}}</title>
 
   {{#if @site.icon}}
@@ -18,16 +19,32 @@
   <link rel="stylesheet" href="{{asset "assets/css/utilities.css"}}">
   <link rel="stylesheet" href="{{asset "assets/css/dark.css"}}">
 
-  <meta name="ghost:accent-color" content="{{@custom.accent_color}}">
-  <meta name="ghost:tinted-bg" content="{{@custom.tinted_bg}}">
+  <meta name="ghost:site-accent" content="{{@site.accent_color}}">
+  <meta name="ghost:accent-bg" content="{{@custom.accent_bg}}">
   <meta name="ghost:color-scheme" content="{{@custom.color_scheme}}">
 
+  <script>
+    (function() {
+      var theme = localStorage.getItem('theme');
+      if (!theme) {
+        var schemeMeta = document.querySelector('meta[name="ghost:color-scheme"]');
+        var scheme = schemeMeta ? schemeMeta.getAttribute('content') : 'light';
+        if (scheme === 'dark') theme = 'dark';
+        else if (scheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
+        else theme = 'light';
+      }
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.name = 'theme-color';
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', theme === 'dark' ? '#1a1a1a' : '{{@site.accent_color}}');
+    })();
+  </script>
   {{ghost_head}}
 </head>
 <body class="{{body_class}}">
-  <div class="skip-to-content">
-    <a href="#main-content">{{t "Skip to content"}}</a>
-  </div>
 
   <div class="site-wrap">
     {{> "header"}}

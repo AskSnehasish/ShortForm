@@ -168,12 +168,12 @@ textarea.form-input {
 
 .post-full-title a {
   color: var(--color-text);
+  text-decoration: none;
+  transition: color 250ms ease;
 }
 
 .post-full-title a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--color-link-underline);
+  color: var(--color-text-muted);
 }
 
 .post-sep {
@@ -530,12 +530,15 @@ textarea.form-input {
 
 .related-post-title a {
   color: var(--color-text);
+  background-image: linear-gradient(var(--color-link-underline), var(--color-link-underline));
+  background-size: 0 1px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 300ms ease;
 }
 
 .related-post-title a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--color-link-underline);
+  background-size: 100% 1px;
 }
 
 .related-post-meta {
@@ -583,12 +586,15 @@ textarea.form-input {
 
 .post-navigation-title a {
   color: var(--color-text);
+  background-image: linear-gradient(var(--color-link-underline), var(--color-link-underline));
+  background-size: 0 1px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 300ms ease;
 }
 
 .post-navigation-title a:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-color: var(--color-link-underline);
+  background-size: 100% 1px;
 }
 
 @media (max-width: 576px) {
@@ -717,6 +723,221 @@ textarea.form-input {
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
   color: var(--color-text-muted);
+}
+
+/* ==========================================
+   Archive (Tag Page, Chronological List)
+   ========================================== */
+
+.archive-container {
+  max-width: var(--content-wide);
+  margin: 0 auto;
+  padding: var(--space-4) var(--content-padding) var(--space-8);
+}
+
+.archive-header {
+  margin-bottom: var(--space-6);
+}
+
+.archive-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+  margin: 0 0 8px;
+}
+
+.archive-description {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.archive-empty {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+  padding: var(--space-6);
+}
+
+/* Year heading */
+.archive-year {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--color-text);
+  margin: 96px 0 64px;
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.archive-year:first-of-type {
+  margin-top: 0;
+}
+
+/* Month heading */
+.archive-month {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+  margin: 64px 0 40px;
+}
+
+/* Date heading */
+.archive-date {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 40px 0 16px;
+}
+
+.archive-date time {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Post row */
+.archive-post {
+  display: grid;
+  grid-template-columns: 95px 1fr;
+  gap: var(--space-2);
+  align-items: baseline;
+  margin: 0 0 16px;
+}
+
+.archive-time {
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  text-align: right;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+}
+
+.archive-post-title {
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.archive-post-title:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.archive-post-title:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Entire post row clickable */
+.archive-post {
+  position: relative;
+}
+
+.archive-post a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .archive-container {
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-6);
+  }
+
+  .archive-year {
+    font-size: 1.5rem;
+    margin: 80px 0 48px;
+  }
+
+  .archive-month {
+    font-size: 1.125rem;
+    margin: 48px 0 32px;
+  }
+
+  .archive-date {
+    font-size: var(--text-xs);
+    margin: 32px 0 12px;
+  }
+
+  .archive-post {
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    margin: 0 0 14px;
+  }
+
+  .archive-time {
+    font-size: var(--text-xs);
+  }
+
+  .archive-post-title {
+    font-size: var(--text-base);
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .archive-year {
+    font-size: 1.375rem;
+    margin: 64px 0 40px;
+  }
+
+  .archive-month {
+    font-size: 1.0625rem;
+    margin: 40px 0 24px;
+  }
+
+  .archive-date {
+    margin: 24px 0 12px;
+  }
+
+  .archive-post {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 0 0 20px;
+  }
+
+  .archive-time {
+    text-align: left;
+    font-size: var(--text-xs);
+    margin-bottom: 2px;
+  }
+
+  .archive-post-title {
+    font-size: var(--text-base);
+  }
+}
+
+/* Small mobile */
+@media (max-width: 400px) {
+  .archive-year {
+    font-size: 1.25rem;
+    margin: 48px 0 32px;
+  }
+
+  .archive-post {
+    margin: 0 0 16px;
+  }
+
+  .archive-post-title {
+    font-size: 0.9375rem;
+  }
 }
 
 /* ==========================================
@@ -968,52 +1189,4 @@ textarea.form-input {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   margin-top: var(--space-1);
-}
-
-/* ==========================================
-   Archive
-   ========================================== */
-
-.archive-list {
-  list-style: none;
-  padding: 0;
-}
-
-.archive-year {
-  font-size: var(--text-2xl);
-  font-weight: 700;
-  margin-top: var(--space-6);
-  margin-bottom: var(--space-3);
-}
-
-.archive-year:first-child {
-  margin-top: 0;
-}
-
-.archive-item {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-3);
-  padding: var(--space-1) 0;
-}
-
-.archive-item-date {
-  flex-shrink: 0;
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  width: 3em;
-}
-
-.archive-item-title {
-  font-size: var(--text-base);
-}
-
-.archive-item-title a {
-  color: var(--color-text);
-}
-
-.archive-item-title a:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-color: var(--color-link-underline);
 }

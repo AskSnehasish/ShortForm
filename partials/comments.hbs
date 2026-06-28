@@ -1,8 +1,12 @@
-{{#if comments}}
-<section class="comments-section" aria-labelledby="comments-title">
-  <h2 class="comments-title" id="comments-title">{{t "Comments"}}</h2>
-  <div class="comments-placeholder">
-    <p>{{t "Comments are currently unavailable."}}</p>
-  </div>
-</section>
+{{#if @site.comments_enabled}}
+  <section class="comments-section">
+    {{comments}}
+  </section>
+{{else}}
+  <section class="comments-section" aria-labelledby="comments-title">
+    <h2 class="comments-title" id="comments-title">{{t "Comments"}}</h2>
+    <div class="comments-placeholder">
+      <p>{{t "Comments are closed for this site."}}</p>
+    </div>
+  </section>
 {{/if}}

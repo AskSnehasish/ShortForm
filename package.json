@@ -35,11 +35,7 @@
         "type": "boolean",
         "default": true
       },
-      "accent_color": {
-        "type": "color",
-        "default": "#2563eb"
-      },
-      "tinted_bg": {
+      "accent_bg": {
         "type": "boolean",
         "default": true
       },

@@ -1,12 +1,65 @@
 {{!< default}}
 
-<div class="container">
-  <header class="tag-header">
-    <h1 class="tag-name">{{tag.name}}</h1>
+<div class="archive-container">
+  <header class="archive-header">
+    <h1 class="archive-heading">{{tag.name}}</h1>
     {{#if tag.description}}
-      <p class="tag-description">{{tag.description}}</p>
+      <p class="archive-description">{{tag.description}}</p>
     {{/if}}
   </header>
 
-  {{#foreach posts}}{{> "post-full"}}{{/foreach}}{{> "pagination"}}
+  {{#get "posts" filter="tags:[{{tag.slug}}]" limit="all" order="published_at desc"}}
+    {{#if posts}}
+      <div class="archive-list" data-archive>
+        {{#foreach posts}}
+          <article class="archive-post" data-year="{{date format="YYYY"}}" data-month="{{date format="YYYY-MM"}}" data-date="{{date format="YYYY-MM-DD"}}">
+            <time class="archive-time" datetime="{{date format="YYYY-MM-DDTHH:mm:ss.SSSZ"}}">{{date format="h:mm A"}}</time>
+            <a class="archive-post-title" href="{{url}}">{{title}}</a>
+          </article>
+        {{/foreach}}
+      </div>
+    {{else}}
+      <p class="archive-empty">{{t "No posts found."}}</p>
+    {{/if}}
+  {{/get}}
 </div>
+
+<script>
+(function() {
+  var list = document.querySelector('[data-archive]');
+  if (!list) return;
+  var posts = list.querySelectorAll('.archive-post');
+  if (!posts.length) return;
+  var lastYear, lastMonth, lastDate;
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var monthsShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  for (var i = 0; i < posts.length; i++) {
+    var post = posts[i];
+    var year = post.getAttribute('data-year');
+    var month = post.getAttribute('data-month');
+    var date = post.getAttribute('data-date');
+    if (year !== lastYear) {
+      var y = document.createElement('h2');
+      y.className = 'archive-year';
+      y.textContent = year;
+      list.insertBefore(y, post);
+      lastYear = year;
+    }
+    if (month !== lastMonth) {
+      var m = document.createElement('h3');
+      m.className = 'archive-month';
+      m.textContent = months[parseInt(month.split('-')[1], 10) - 1];
+      list.insertBefore(m, post);
+      lastMonth = month;
+    }
+    if (date !== lastDate) {
+      var d = document.createElement('h4');
+      d.className = 'archive-date';
+      var parts = date.split('-');
+      d.innerHTML = '<time datetime="' + date + '">' + monthsShort[parseInt(parts[1], 10) - 1] + ' ' + parseInt(parts[2], 10) + ', ' + parts[0] + '</time>';
+      list.insertBefore(d, post);
+      lastDate = date;
+    }
+  }
+})();
+</script>
