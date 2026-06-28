@@ -297,122 +297,6 @@
   }
 
   /* ==========================================
-     Search
-     ========================================== */
-
-  var searchToggle = document.querySelector('[data-search-toggle]');
-  var searchOverlay = document.querySelector('[data-search-overlay]');
-  var searchModal = document.querySelector('[data-search-modal]');
-  var searchInput = document.querySelector('[data-search-input]');
-  var searchResults = document.querySelector('[data-search-results]');
-  var searchData = [];
-
-  function openSearch() {
-    if (!searchOverlay || !searchModal) return;
-    searchOverlay.classList.add('open');
-    searchModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    if (searchInput) {
-      searchInput.value = '';
-      searchInput.focus();
-    }
-    if (searchResults) searchResults.innerHTML = '';
-  }
-
-  function closeSearch() {
-    if (!searchOverlay || !searchModal) return;
-    searchOverlay.classList.remove('open');
-    searchModal.classList.remove('open');
-    document.body.style.overflow = '';
-    if (searchInput) searchInput.value = '';
-    if (searchResults) searchResults.innerHTML = '';
-  }
-
-  if (searchToggle) {
-    searchToggle.addEventListener('click', openSearch);
-  }
-
-  if (searchOverlay) {
-    searchOverlay.addEventListener('click', closeSearch);
-  }
-
-  document.addEventListener('keydown', function (e) {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-      e.preventDefault();
-      if (searchModal && searchModal.classList.contains('open')) {
-        closeSearch();
-      } else {
-        openSearch();
-      }
-    }
-    if (e.key === 'Escape') {
-      closeSearch();
-    }
-  });
-
-  // Fetch search data from Ghost's public API
-  if (searchInput && searchResults && window.location.origin) {
-    var searchUrl = window.location.origin + '/ghost/api/content/posts/?limit=all&include=tags,authors&key=';
-
-    // Try to find the content API key from meta tag or configuration
-    var metaKey = document.querySelector('meta[name="ghost-search-key"]');
-    if (metaKey) {
-      searchUrl += metaKey.getAttribute('content');
-    }
-
-    if (metaKey) {
-      fetch(searchUrl)
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          if (data && data.posts) {
-            searchData = data.posts.map(function (p) {
-              return {
-                title: p.title,
-                excerpt: p.custom_excerpt || p.excerpt || '',
-                url: p.url,
-                slug: p.slug,
-              };
-            });
-          }
-        })
-        .catch(function () {});
-    }
-
-    searchInput.addEventListener('input', function () {
-      var query = searchInput.value.toLowerCase().trim();
-      if (!query) {
-        searchResults.innerHTML = '';
-        return;
-      }
-
-      var matches = searchData.filter(function (item) {
-        return item.title.toLowerCase().indexOf(query) !== -1 ||
-               item.excerpt.toLowerCase().indexOf(query) !== -1;
-      });
-
-      if (matches.length === 0) {
-        searchResults.innerHTML = '<div class="search-empty">No results found</div>';
-        return;
-      }
-
-      var html = '';
-      matches.slice(0, 10).forEach(function (item) {
-        html += '<a href="' + item.url + '" class="search-result-item">' +
-                '<div class="search-result-title">' + escapeHtml(item.title) + '</div>' +
-                (item.excerpt ? '<div class="search-result-excerpt">' + escapeHtml(item.excerpt.slice(0, 120)) + '</div>' : '') +
-                '</a>';
-      });
-      searchResults.innerHTML = html;
-    });
-  }
-
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(text));
-    return div.innerHTML;
-  }
-
-  /* ==========================================
      Image Zoom
      ========================================== */
 
@@ -433,16 +317,6 @@
       });
     });
   });
-
-  /* ==========================================
-     Keyboard Navigation for Search
-     ========================================== */
-
-  if (searchModal) {
-    searchModal.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeSearch();
-    });
-  }
 
   /* ==========================================
      Persist theme-color across chrome events

@@ -55,21 +55,6 @@
     {{> "footer"}}
   </div>
 
-  {{!-- Search overlay --}}
-  <div class="search-overlay" data-search-overlay aria-hidden="true"></div>
-  <div class="search-modal" data-search-modal role="dialog" aria-label="{{t "Search"}}" aria-modal="true">
-    <label class="sr-only" for="search-input">{{t "Search"}}</label>
-    <input
-      id="search-input"
-      class="search-modal-input"
-      data-search-input
-      type="text"
-      placeholder="{{t "Search posts..."}}"
-      autocomplete="off"
-    />
-    <div class="search-modal-results" data-search-results></div>
-  </div>
-
   {{!-- Reading progress bar --}}
   <div class="reading-progress" data-progress-bar role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
