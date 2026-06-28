@@ -51,7 +51,7 @@
       '}',
       '',
       '[data-testid="signin-button"] {',
-      '  color: ' + textSecondary + ' !important;',
+      '  color: ' + textColor + ' !important;',
       '}',
       '',
       '.ProseMirror p.is-editor-empty:first-child:before {',
@@ -102,52 +102,42 @@
     ].join('\n');
   }
 
+  var injectionCount = 0;
+  var maxInjections = 20;
+
   function injectStyles() {
+    injectionCount++;
     var root = document.getElementById('ghost-comments-root');
     if (!root) return;
     var iframe = root.querySelector('iframe');
     if (!iframe) return;
     try {
       var doc = iframe.contentDocument || iframe.contentWindow.document;
-      if (!doc) return;
+      if (!doc || !doc.head) return;
       var existing = doc.getElementById('gh-comments-theme-css');
-      if (existing) existing.remove();
-      var style = doc.createElement('style');
-      style.id = 'gh-comments-theme-css';
+      var style;
+      if (existing) {
+        style = existing;
+        style.textContent = '';
+      } else {
+        style = doc.createElement('style');
+        style.id = 'gh-comments-theme-css';
+        doc.head.appendChild(style);
+      }
       style.textContent = buildCSS();
-      doc.head.appendChild(style);
     } catch(e) {}
   }
 
-  function waitAndInject() {
-    var root = document.getElementById('ghost-comments-root');
-    if (root) {
-      var iframe = root.querySelector('iframe');
-      if (iframe && iframe.contentDocument) {
-        injectStyles();
-        return;
-      }
+  function pollInject() {
+    injectStyles();
+    if (injectionCount < maxInjections) {
+      setTimeout(pollInject, 500);
     }
-    var observer = new MutationObserver(function() {
-      var el = document.getElementById('ghost-comments-root');
-      if (el) {
-        var f = el.querySelector('iframe');
-        if (f) {
-          f.addEventListener('load', injectStyles);
-          if (f.contentDocument && f.contentDocument.readyState === 'complete') {
-            injectStyles();
-          }
-          observer.disconnect();
-        }
-      }
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-    setTimeout(injectStyles, 3000);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', waitAndInject);
+    document.addEventListener('DOMContentLoaded', pollInject);
   } else {
-    waitAndInject();
+    pollInject();
   }
 })();
