@@ -9,15 +9,11 @@
       <time datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished">{{date format="MMM D, YYYY"}}</time>
       <span class="sep" aria-hidden="true">&middot;</span>
       <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
-      {{#if primary_tag}}
-        <span class="sep" aria-hidden="true">&middot;</span>
-        <a class="post-tag" href="{{primary_tag.url}}" itemprop="keywords">{{primary_tag.name}}</a>
-      {{/if}}
       {{#if tags}}
         <span class="sep" aria-hidden="true">&middot;</span>
         <div class="post-tags">
           {{#foreach tags limit="5"}}
-            <a class="post-tag" href="{{url}}">{{name}}</a>{{#if @last}}{{else}}, {{/if}}
+            <a class="post-tag" href="{{url}}" {{#if @first}}itemprop="keywords"{{/if}}>{{name}}</a>{{#if @last}}{{else}}<span class="tag-sep" aria-hidden="true">, </span>{{/if}}
           {{/foreach}}
         </div>
       {{/if}}

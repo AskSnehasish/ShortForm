@@ -119,11 +119,45 @@
       if (docHeight <= 0) return;
       var progress = Math.min((scrollTop / docHeight) * 100, 100);
       progressBar.style.width = progress + '%';
+      progressBar.setAttribute('aria-valuenow', Math.round(progress));
     }
 
     window.addEventListener('scroll', updateProgress, { passive: true });
     window.addEventListener('resize', updateProgress, { passive: true });
     updateProgress();
+  }
+
+  /* ==========================================
+     Header Auto-Hide
+     ========================================== */
+
+  var header = document.querySelector('.site-header');
+  var lastScrollY = window.scrollY;
+  var ticking = false;
+  var headerHidden = false;
+
+  if (header) {
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          var currentScrollY = window.scrollY;
+          if (currentScrollY > lastScrollY && currentScrollY > 120) {
+            if (!headerHidden) {
+              header.classList.add('site-header--hidden');
+              headerHidden = true;
+            }
+          } else if (currentScrollY < lastScrollY) {
+            if (headerHidden) {
+              header.classList.remove('site-header--hidden');
+              headerHidden = false;
+            }
+          }
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
   }
 
   /* ==========================================

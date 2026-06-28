@@ -1,16 +1,19 @@
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="site-footer-copyright">
-      &copy; {{date format="YYYY"}} <a href="{{@site.url}}">{{@site.title}}</a>. {{t "All rights reserved."}}
+      &copy; {{date format="YYYY"}} <a href="{{@site.url}}">{{@site.title}}</a>.
     </div>
-    <nav class="site-footer-nav" aria-label="{{t "Footer navigation"}}">
-      <a href="{{@site.url}}/rss/" aria-label="{{t "RSS Feed"}}">{{t "RSS"}}</a>
-      {{#if @site.facebook}}<span class="sep" aria-hidden="true">&middot;</span>
-        <a href="{{@site.facebook}}" target="_blank" rel="noopener noreferrer" aria-label="{{t "Facebook"}}">{{t "Facebook"}}</a>
+    <nav class="site-footer-nav" aria-label="{{t "Footer"}}">
+      <a href="{{@site.url}}/rss/">{{t "RSS"}}</a>
+      {{#if @site.facebook}}<span class="sep" aria-hidden="true">·</span>
+        <a href="{{@site.facebook}}" target="_blank" rel="noopener noreferrer">{{t "Facebook"}}</a>
       {{/if}}
-      {{#if @site.twitter}}<span class="sep" aria-hidden="true">&middot;</span>
-        <a href="{{@site.twitter}}" target="_blank" rel="noopener noreferrer" aria-label="{{t "Twitter"}}">{{t "Twitter"}}</a>
+      {{#if @site.twitter}}<span class="sep" aria-hidden="true">·</span>
+        <a href="{{@site.twitter}}" target="_blank" rel="noopener noreferrer">{{t "Twitter"}}</a>
       {{/if}}
     </nav>
+    {{#if @custom.show_credit_line}}
+      <p class="site-footer-credit">Designed with ❤️ in India by <a href="https://snayak.com" target="_blank" rel="noopener noreferrer">Snehasish</a>.</p>
+    {{/if}}
   </div>
 </footer>

@@ -103,37 +103,45 @@ textarea.form-input {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
+  gap: 6px 24px;
+  font-size: var(--text-xs);
+  line-height: 1.6;
   color: var(--color-text-muted);
-  margin-top: var(--space-3);
-  margin-bottom: var(--space-6);
+  margin-top: 0;
+  margin-bottom: 28px;
 }
 
 .post-meta .sep {
   color: var(--color-border);
+  font-size: 0.5em;
+  line-height: 1;
 }
 
 .post-meta a {
   color: var(--color-text-muted);
+  text-decoration: none;
 }
 
 .post-meta a:hover {
   color: var(--color-text);
-  text-decoration: none;
 }
 
 .post-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1);
+  display: inline;
+}
+
+.post-tags a {
+  color: var(--color-text-muted);
+}
+
+.post-tags a:hover {
+  color: var(--color-text);
+  text-decoration: none;
 }
 
 .post-tag {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 .post-tag:hover {
@@ -150,11 +158,12 @@ textarea.form-input {
 }
 
 .post-full-title {
-  font-size: var(--text-4xl);
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: var(--leading-tight);
-  margin-bottom: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+  margin-bottom: 18px;
 }
 
 .post-full-title a {
@@ -168,7 +177,7 @@ textarea.form-input {
 }
 
 .post-sep {
-  margin: var(--space-7) 0;
+  margin: 40px 0;
 }
 
 /* ==========================================
@@ -180,8 +189,8 @@ textarea.form-input {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  padding: var(--space-5) 0;
-  margin-top: var(--space-4);
+  padding: 32px 0;
+  margin-top: 32px;
   border-top: 1px solid var(--color-border);
   font-size: var(--text-sm);
 }
@@ -197,6 +206,12 @@ textarea.form-input {
 .pagination-link:hover {
   color: var(--color-text);
   text-decoration: none;
+}
+
+.pagination-link:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 .pagination-link[disabled],
@@ -232,7 +247,7 @@ textarea.form-input {
    ========================================== */
 
 .toc {
-  margin: var(--space-4) 0;
+  margin: 32px 0;
   padding: var(--space-3);
   background: var(--color-code-bg);
   border-radius: var(--radius-md);
@@ -277,7 +292,7 @@ textarea.form-input {
 
 .code-block {
   position: relative;
-  margin: var(--space-4) 0;
+  margin: 32px 0;
   background: var(--color-code-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -294,7 +309,7 @@ textarea.form-input {
 
 .code-block code {
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
+  font-size: 0.875em;
   line-height: 1.6;
   color: var(--color-text);
 }
@@ -345,7 +360,7 @@ textarea.form-input {
 .table-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  margin: var(--space-4) 0;
+  margin: 32px 0;
 }
 
 .table-wrap table {
@@ -361,7 +376,7 @@ textarea.form-input {
   align-items: flex-start;
   gap: var(--space-2);
   padding: var(--space-3);
-  margin: var(--space-4) 0;
+  margin: 32px 0;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
@@ -410,8 +425,8 @@ textarea.form-input {
 .author-box {
   display: flex;
   gap: var(--space-3);
-  padding: var(--space-4) 0;
-  margin: var(--space-6) 0;
+  padding: 32px 0;
+  margin: 48px 0;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -478,13 +493,13 @@ textarea.form-input {
    ========================================== */
 
 .related-posts {
-  margin: var(--space-7) 0;
+  margin: 48px 0;
 }
 
 .related-posts-title {
   font-size: var(--text-lg);
   font-weight: 600;
-  margin-bottom: var(--space-4);
+  margin-bottom: 24px;
 }
 
 .related-posts-grid {
@@ -536,8 +551,8 @@ textarea.form-input {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-4);
-  margin: var(--space-6) 0;
-  padding: var(--space-4) 0;
+  margin: 48px 0;
+  padding: 32px 0;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
@@ -591,48 +606,84 @@ textarea.form-input {
    ========================================== */
 
 .newsletter-box {
-  margin: var(--space-7) 0;
-  padding: var(--space-5) 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  margin: 64px 0 0;
 }
 
 .newsletter-title {
-  font-size: var(--text-xl);
+  font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: var(--space-1);
+  line-height: 1.25;
+  margin-bottom: 12px;
 }
 
 .newsletter-description {
   font-size: var(--text-base);
+  line-height: 1.65;
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-3);
-  line-height: var(--leading-normal);
+  margin-bottom: 24px;
 }
 
 .newsletter-form {
   display: flex;
-  gap: var(--space-2);
+  gap: 12px;
   max-width: 440px;
 }
 
-.newsletter-form .form-input {
+.newsletter-input {
   flex: 1;
   min-width: 0;
+  padding: 8px 0;
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  -webkit-appearance: none;
+  transition: border-color 250ms ease;
 }
 
-.newsletter-form .btn {
+.newsletter-input:focus {
+  outline: none;
+  border-bottom-color: var(--color-text);
+}
+
+.newsletter-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.newsletter-submit {
   flex-shrink: 0;
+  padding: 8px 16px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: color 250ms ease, border-color 250ms ease;
+}
+
+.newsletter-submit:hover {
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.newsletter-submit:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
 }
 
 .newsletter-success,
 .newsletter-error {
   font-size: var(--text-sm);
-  margin-top: var(--space-2);
+  margin-top: 12px;
 }
 
 .newsletter-success {
-  color: #16a34a;
+  color: var(--color-text-secondary);
 }
 
 .newsletter-error {
@@ -650,7 +701,7 @@ textarea.form-input {
    ========================================== */
 
 .comments-section {
-  margin: var(--space-7) 0;
+  margin: 48px 0;
 }
 
 .comments-title {
@@ -758,6 +809,7 @@ textarea.form-input {
 .search-modal-results {
   max-height: 360px;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: var(--space-1) 0;
 }
 
@@ -831,8 +883,6 @@ textarea.form-input {
   outline-offset: 2px;
 }
 
-
-
 /* ==========================================
    Image Zoom
    ========================================== */
@@ -895,7 +945,7 @@ textarea.form-input {
 
 .tag-header,
 .author-header {
-  margin-bottom: var(--space-6);
+  margin-bottom: 40px;
 }
 
 .tag-name,

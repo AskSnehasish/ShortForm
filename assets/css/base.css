@@ -22,6 +22,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  overflow-wrap: break-word;
   overflow-x: hidden;
 }
 
@@ -103,14 +106,14 @@ code {
 p > code,
 li > code {
   background: var(--color-code-bg);
-  padding: 2px 6px;
+  padding: 1px 4px;
   border-radius: var(--radius-sm);
   font-size: 0.875em;
 }
 
 blockquote {
-  border-left: 3px solid var(--color-text);
-  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-text);
+  padding-left: var(--space-3);
   margin: var(--space-4) 0;
   color: var(--color-text-secondary);
 }
@@ -143,7 +146,7 @@ canvas {
   display: block;
 }
 
-.skip-to-content {
+.skip-to-content a {
   position: absolute;
   top: -100%;
   left: var(--space-2);
@@ -156,7 +159,7 @@ canvas {
   transition: top var(--transition-fast);
 }
 
-.skip-to-content:focus {
+.skip-to-content a:focus {
   top: var(--space-2);
   text-decoration: none;
 }

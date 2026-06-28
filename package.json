@@ -1,11 +1,11 @@
 {
   "name": "shortform",
   "version": "1.0.0",
-  "description": "A minimalist Ghost theme focused on typography and reading experience.",
+  "description": "A minimalist Ghost theme focused on typography and reading experience. Designed in India by Snehasish.",
   "author": {
-    "name": "Your Name",
-    "email": "you@example.com",
-    "url": "https://example.com"
+    "name": "Snehasish Nayak",
+    "email": "snehasish@snayak.com",
+    "url": "https://snayak.com"
   },
   "config": {
     "posts_per_page": 10,
@@ -30,6 +30,10 @@
       "home_tags": {
         "type": "text",
         "default": ""
+      },
+      "show_credit_line": {
+        "type": "boolean",
+        "default": true
       }
     }
   },

@@ -12,12 +12,12 @@
 
   {{#if @site.members_enabled}}
   <section class="newsletter-box" aria-labelledby="about-newsletter-title">
-    <h2 class="newsletter-title" id="about-newsletter-title">{{t "Stay in touch"}}</h2>
-    <p class="newsletter-description">{{t "Subscribe to get notified about new posts."}}</p>
+    <h3 class="newsletter-title" id="about-newsletter-title">{{t "Email updates"}}</h3>
+    <p class="newsletter-description">{{t "If you'd like to receive new posts straight to your inbox, enter your email below."}}</p>
     <form class="newsletter-form" data-members-form="subscribe" aria-label="{{t "Newsletter signup"}}">
       <label class="sr-only" for="about-newsletter-email">{{t "Email address"}}</label>
       <input
-        class="form-input"
+        class="newsletter-input"
         id="about-newsletter-email"
         data-members-email
         type="email"
@@ -25,7 +25,7 @@
         required
         autocomplete="email"
       />
-      <button class="btn btn-primary" type="submit">{{t "Subscribe"}}</button>
+      <button class="newsletter-submit" type="submit">{{t "Subscribe"}}</button>
     </form>
     <div class="newsletter-success" data-members-success style="display:none;">
       {{t "Thanks for subscribing!"}}
