@@ -5,12 +5,10 @@
     </div>
     <nav class="site-footer-nav" aria-label="{{t "Footer"}}">
       <a href="{{@site.url}}/rss/">{{t "RSS"}}</a>
-      {{#if @site.facebook}}<span class="sep" aria-hidden="true">·</span>
-        <a href="{{@site.facebook}}" target="_blank" rel="noopener noreferrer">{{t "Facebook"}}</a>
-      {{/if}}
-      {{#if @site.twitter}}<span class="sep" aria-hidden="true">·</span>
-        <a href="{{@site.twitter}}" target="_blank" rel="noopener noreferrer">{{t "Twitter"}}</a>
-      {{/if}}
+      {{#social_accounts @site}}
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="{{href}}" target="_blank" rel="noopener noreferrer">{{name}}</a>
+      {{/social_accounts}}
     </nav>
     {{#if @custom.show_credit_line}}
       <p class="site-footer-credit">Designed with ❤️ in India by <a href="https://snayak.com" target="_blank" rel="noopener noreferrer">Snehasish</a>.</p>

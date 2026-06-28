@@ -13,7 +13,7 @@
   line-height: 1.5;
   color: var(--color-text);
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: 0.1px solid var(--color-border);
   border-radius: var(--radius-md);
   transition: border-color var(--transition-fast), color var(--transition-fast);
   cursor: pointer;
@@ -70,7 +70,7 @@
   line-height: 1.5;
   color: var(--color-text);
   background: var(--color-bg);
-  border: 1px solid var(--color-border);
+  border: 0.1px solid var(--color-border);
   border-radius: var(--radius-md);
   transition: border-color var(--transition-fast);
   -webkit-appearance: none;
@@ -191,7 +191,7 @@ textarea.form-input {
   gap: var(--space-2);
   padding: 32px 0;
   margin-top: 32px;
-  border-top: 1px solid var(--color-border);
+  border-top: 0.1px solid var(--color-border);
   font-size: var(--text-sm);
 }
 
@@ -294,7 +294,7 @@ textarea.form-input {
   position: relative;
   margin: 32px 0;
   background: var(--color-code-bg);
-  border: 1px solid var(--color-border);
+  border: 0.1px solid var(--color-border);
   border-radius: var(--radius-md);
   overflow: hidden;
 }
@@ -377,7 +377,7 @@ textarea.form-input {
   gap: var(--space-2);
   padding: var(--space-3);
   margin: 32px 0;
-  border: 1px solid var(--color-border);
+  border: 0.1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: var(--text-sm);
   line-height: var(--leading-normal);
@@ -427,8 +427,8 @@ textarea.form-input {
   gap: var(--space-3);
   padding: 32px 0;
   margin: 48px 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  border-top: 0.1px solid var(--color-border);
+  border-bottom: 0.1px solid var(--color-border);
 }
 
 .author-box-avatar {
@@ -510,7 +510,7 @@ textarea.form-input {
 
 .related-post {
   padding: var(--space-3) 0;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 0.1px solid var(--color-border);
 }
 
 .related-post:first-child {
@@ -556,8 +556,8 @@ textarea.form-input {
   gap: var(--space-4);
   margin: 48px 0;
   padding: 32px 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  border-top: 0.1px solid var(--color-border);
+  border-bottom: 0.1px solid var(--color-border);
 }
 
 .post-navigation-item {
@@ -644,7 +644,7 @@ textarea.form-input {
   color: var(--color-text);
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 0.1px solid var(--color-border);
   -webkit-appearance: none;
   transition: border-color 250ms ease;
 }
@@ -666,7 +666,7 @@ textarea.form-input {
   line-height: 1.5;
   color: var(--color-text-muted);
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: 0.1px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: color 250ms ease, border-color 250ms ease;
@@ -771,7 +771,7 @@ textarea.form-input {
   color: var(--color-text);
   margin: 96px 0 64px;
   padding-bottom: var(--space-1);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 0.1px solid var(--color-border);
 }
 
 .archive-year:first-of-type {
@@ -951,7 +951,7 @@ textarea.form-input {
   padding: var(--space-1) var(--space-2);
   font-size: var(--text-sm);
   color: var(--color-text-muted);
-  border: 1px solid var(--color-border);
+  border: 0.1px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: border-color var(--transition-fast), color var(--transition-fast);
@@ -966,7 +966,7 @@ textarea.form-input {
   font-family: var(--font-sans);
   font-size: var(--text-xs);
   padding: 1px 4px;
-  border: 1px solid var(--color-border);
+  border: 0.1px solid var(--color-border);
   border-radius: var(--radius-sm);
   color: var(--color-text-muted);
 }
@@ -994,7 +994,7 @@ textarea.form-input {
   width: 90%;
   max-width: 560px;
   background: var(--color-bg);
-  border: 1px solid var(--color-border);
+  border: 0.1px solid var(--color-border);
   border-radius: var(--radius-md);
   z-index: 901;
   display: none;
@@ -1014,7 +1014,7 @@ textarea.form-input {
   padding: var(--space-3);
   font-size: var(--text-base);
   border: none;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 0.1px solid var(--color-border);
   background: transparent;
   color: var(--color-text);
 }
@@ -1037,7 +1037,7 @@ textarea.form-input {
 .search-result-item {
   display: block;
   padding: var(--space-2) var(--space-3);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 0.1px solid var(--color-border);
   transition: background var(--transition-fast);
 }
 

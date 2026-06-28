@@ -14,14 +14,10 @@
         {{#if primary_author.location}}<span aria-hidden="true">&middot;</span>{{/if}}
         <a href="{{primary_author.website}}" target="_blank" rel="noopener noreferrer">{{t "Website"}}</a>
       {{/if}}
-      {{#if primary_author.twitter}}
-        {{#if primary_author.website}}<span aria-hidden="true">&middot;</span>{{/if}}
-        <a href="{{primary_author.twitter_url}}" target="_blank" rel="noopener noreferrer">{{t "Twitter"}}</a>
-      {{/if}}
-      {{#if primary_author.facebook}}
-        {{#if primary_author.twitter}}<span aria-hidden="true">&middot;</span>{{/if}}
-        <a href="{{primary_author.facebook_url}}" target="_blank" rel="noopener noreferrer">{{t "Facebook"}}</a>
-      {{/if}}
+      {{#social_accounts primary_author}}
+        <span aria-hidden="true">&middot;</span>
+        <a href="{{href}}" target="_blank" rel="noopener noreferrer">{{name}}</a>
+      {{/social_accounts}}
     </div>
   </header>
 

@@ -19,12 +19,9 @@
         {{#if website}}
           <a href="{{website}}" target="_blank" rel="noopener noreferrer">{{t "Website"}}</a>
         {{/if}}
-        {{#if facebook}}
-          <a href="{{facebook_url}}" target="_blank" rel="noopener noreferrer">{{t "Facebook"}}</a>
-        {{/if}}
-        {{#if twitter}}
-          <a href="{{twitter_url}}" target="_blank" rel="noopener noreferrer">{{t "Twitter"}}</a>
-        {{/if}}
+        {{#social_accounts this}}
+          <a href="{{href}}" target="_blank" rel="noopener noreferrer">{{name}}</a>
+        {{/social_accounts}}
       </div>
     </div>
   </div>
