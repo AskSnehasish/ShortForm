@@ -914,9 +914,10 @@ h1.site-logo {
 }
 
 .post-card-title {
-  font-size: var(--text-xl);
+  font-size: 1.6875rem;
   font-weight: 600;
   line-height: var(--leading-tight);
+  margin-top: 4px;
   margin-bottom: var(--space-1);
 }
 
@@ -1246,7 +1247,7 @@ textarea.form-input {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px 24px;
+  gap: var(--space-2);
   font-size: var(--text-xs);
   line-height: 1.6;
   color: var(--color-text-muted);
@@ -1301,11 +1302,12 @@ textarea.form-input {
 }
 
 .post-full-title {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.15;
   text-wrap: balance;
+  margin-top: 4px;
   margin-bottom: 18px;
 }
 
@@ -1345,10 +1347,12 @@ textarea.form-input {
   gap: var(--space-1);
   color: var(--color-text-secondary);
   font-weight: 500;
+  transition: color var(--transition-base), opacity var(--transition-base);
 }
 
 .pagination-link:hover {
   color: var(--color-text);
+  opacity: 0.75;
   text-decoration: none;
 }
 
