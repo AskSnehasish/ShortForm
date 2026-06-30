@@ -1,6 +1,9 @@
-<article class="post-full" role="article">
+<article class="post-full reveal" role="article">
   <header class="post-header">
     <h2 class="post-full-title"><a href="{{url}}">{{title}}</a></h2>
+    {{#if custom_excerpt}}
+      <p class="post-excerpt">{{custom_excerpt}}</p>
+    {{/if}}
     <div class="post-meta">
       <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
       <span class="sep" aria-hidden="true">&middot;</span>

@@ -5,6 +5,10 @@
   <header class="post-header">
     <h1 class="post-full-title" itemprop="headline">{{title}}</h1>
 
+    {{#if custom_excerpt}}
+      <p class="post-excerpt" itemprop="description">{{custom_excerpt}}</p>
+    {{/if}}
+
     <div class="post-meta">
       <time datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished">{{date format="MMM D, YYYY"}}</time>
       <span class="sep" aria-hidden="true">&middot;</span>
@@ -30,18 +34,20 @@
   {{> "comments"}}
   {{> "related-posts"}}
 
-  <nav class="post-navigation" role="navigation" aria-label="{{t "Post navigation"}}">
-    <div class="post-navigation-item">
-      {{#prev_post}}
-        <span class="post-navigation-label">{{t "Previous post"}}</span>
-        <span class="post-navigation-title"><a href="{{url}}">{{title}}</a></span>
-      {{/prev_post}}
-    </div>
-    <div class="post-navigation-item post-navigation-item-next">
-      {{#next_post}}
-        <span class="post-navigation-label">{{t "Next post"}}</span>
-        <span class="post-navigation-title"><a href="{{url}}">{{title}}</a></span>
-      {{/next_post}}
+  <nav class="pagination" role="navigation" aria-label="{{t "Post navigation"}}">
+    <div class="pagination-inner">
+      <div class="pagination-link pagination-link--prev">
+        {{#prev_post}}
+          <span class="pagination-label">&larr; {{t "Next read"}}</span>
+          <a class="pagination-title" href="{{url}}">{{title}}</a>
+        {{/prev_post}}
+      </div>
+      <div class="pagination-link pagination-link--next">
+        {{#next_post}}
+          <span class="pagination-label">{{t "Continue reading"}} &rarr;</span>
+          <a class="pagination-title" href="{{url}}">{{title}}</a>
+        {{/next_post}}
+      </div>
     </div>
   </nav>
 

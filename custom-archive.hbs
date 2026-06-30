@@ -9,7 +9,7 @@
     {{#if posts}}
       <div class="archive-list" data-archive>
         {{#foreach posts}}
-          <article class="archive-post" data-year="{{date format="YYYY"}}" data-month="{{date format="YYYY-MM"}}" data-date="{{date format="YYYY-MM-DD"}}">
+          <article class="archive-post reveal" data-year="{{date format="YYYY"}}" data-month="{{date format="YYYY-MM"}}" data-date="{{date format="YYYY-MM-DD"}}">
             <time class="archive-time" datetime="{{date format="YYYY-MM-DDTHH:mm:ss.SSSZ"}}">{{date format="h:mm A"}}</time>
             <a class="archive-post-title" href="{{url}}">{{title}}</a>
           </article>

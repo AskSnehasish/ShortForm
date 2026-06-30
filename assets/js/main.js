@@ -323,4 +323,29 @@
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden) syncThemeColor();
   });
+
+  /* ==========================================
+     Scroll Reveal (Intersection Observer)
+     ========================================== */
+
+  var revealElements = document.querySelectorAll('.reveal');
+  if (revealElements.length && 'IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '-40px 0px', threshold: 0 });
+
+    revealElements.forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    // Fallback: show everything immediately
+    revealElements.forEach(function (el) {
+      el.classList.add('visible');
+    });
+  }
 })();

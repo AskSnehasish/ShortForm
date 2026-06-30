@@ -1,13 +1,24 @@
 <nav class="pagination" role="navigation" aria-label="{{t "Pagination"}}">
-  {{#if pagination.prev}}
-    <a class="pagination-link" href="{{page_url pagination.prev}}">&larr; {{t "Previous"}}</a>
-  {{else}}
-    <span class="pagination-link" disabled>&larr; {{t "Previous"}}</span>
-  {{/if}}
-  <span class="pagination-info">{{t "Page"}} {{pagination.page}} {{t "of"}} {{pagination.pages}}</span>
-  {{#if pagination.next}}
-    <a class="pagination-link" href="{{page_url pagination.next}}">{{t "Next"}} &rarr;</a>
-  {{else}}
-    <span class="pagination-link" disabled>{{t "Next"}} &rarr;</span>
-  {{/if}}
+  <div class="pagination-inner">
+    {{#if pagination.prev}}
+      {{#get "posts" limit="1" include="title" page=pagination.prev}}
+        <a class="pagination-link pagination-link--prev" href="{{page_url ../pagination.prev}}">
+          <span class="pagination-label">&larr; {{t "Next read"}}</span>
+          <span class="pagination-title">{{#foreach posts}}{{title}}{{/foreach}}</span>
+        </a>
+      {{/get}}
+    {{else}}
+      <span class="pagination-placeholder"></span>
+    {{/if}}
+    {{#if pagination.next}}
+      {{#get "posts" limit="1" include="title" page=pagination.next}}
+        <a class="pagination-link pagination-link--next" href="{{page_url ../pagination.next}}">
+          <span class="pagination-label">{{t "Continue reading"}} &rarr;</span>
+          <span class="pagination-title">{{#foreach posts}}{{title}}{{/foreach}}</span>
+        </a>
+      {{/get}}
+    {{else}}
+      <span class="pagination-placeholder"></span>
+    {{/if}}
+  </div>
 </nav>

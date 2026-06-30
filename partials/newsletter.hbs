@@ -1,7 +1,9 @@
 {{#if @site.members_enabled}}
-<section class="newsletter-box" aria-labelledby="newsletter-title">
-  <h3 class="newsletter-title" id="newsletter-title">{{t "Email updates"}}</h3>
-  <p class="newsletter-description">{{t "If you'd like to receive new posts straight to your inbox, enter your email below."}}</p>
+<section class="newsletter-box newsletter-box--{{@custom.newsletter_style}}" aria-labelledby="newsletter-title">
+  <h3 class="newsletter-title" id="newsletter-title">{{t "Enjoyed reading?"}}</h3>
+  <span class="newsletter-prompt" aria-hidden="true">{{t "Email updates"}}</span>
+  <p class="newsletter-desc newsletter-desc--subtle" id="newsletter-desc">{{t "Receive new journal entries by email."}}</p>
+  <p class="newsletter-desc newsletter-desc--standard" aria-hidden="true">{{t "If you'd like to receive new posts straight to your inbox, enter your email below."}}</p>
   <form class="newsletter-form" data-members-form="subscribe" aria-label="{{t "Newsletter signup"}}">
     <label class="sr-only" for="newsletter-email">{{t "Email address"}}</label>
     <input

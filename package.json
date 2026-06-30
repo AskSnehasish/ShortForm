@@ -39,6 +39,15 @@
         "type": "select",
         "options": ["light", "dark", "auto"],
         "default": "light"
+      },
+      "newsletter_style": {
+        "type": "select",
+        "options": ["subtle", "standard"],
+        "default": "subtle"
+      },
+      "copyright_text": {
+        "type": "text",
+        "default": ""
       }
     }
   },
