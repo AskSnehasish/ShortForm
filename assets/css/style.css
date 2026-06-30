@@ -4,7 +4,7 @@
   --color-text: #222222;
   --color-text-secondary: #666666;
   --color-text-muted: #888888;
-  --color-border: #ecececaf;
+  --color-border: rgba(255, 255, 255, 0.08);
   --color-code-bg: #f6f6f6;
   --color-selection: #dbeafe;
   --color-link-underline: rgba(34, 34, 34, 0.25);
@@ -1005,9 +1005,15 @@ h1.site-logo {
 }
 
 .nav-more-arrow {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  font-size: 20px;
+  line-height: 1;
   transition: transform var(--transition-fast);
-  font-size: 10px;
+  transform-origin: center;
 }
 
 .nav-more-dropdown {
@@ -1684,10 +1690,12 @@ textarea.form-input {
   background-repeat: no-repeat;
   background-position: left bottom;
   transition: background-size 300ms ease;
+  text-decoration: auto;
 }
 
 .related-post-title a:hover {
   background-size: 100% 1px;
+  text-decoration: auto;
 }
 
 .related-post-meta {
@@ -1740,10 +1748,12 @@ textarea.form-input {
   background-repeat: no-repeat;
   background-position: left bottom;
   transition: background-size 300ms ease;
+  text-decoration: auto;
 }
 
 .post-navigation-title a:hover {
   background-size: 100% 1px;
+   text-decoration: auto;
 }
 
 @media (max-width: 576px) {
@@ -2161,13 +2171,19 @@ textarea.form-input {
   width: 32px;
   height: 32px;
   padding: 0;
-  font-size: var(--text-base);
+  line-height: 0;
   color: var(--color-text-muted);
   background: transparent;
   border: 0.1px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.theme-toggle span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .theme-toggle:hover {
@@ -2271,7 +2287,7 @@ textarea.form-input {
   --color-text: #e4e4e4;
   --color-text-secondary: #a0a0a0;
   --color-text-muted: #6b6b6b;
-  --color-border: #2e2e2e;
+  --color-border: rgba(255, 255, 255, 0.08);
   --color-code-bg: #232323;
   --color-selection: #334155;
   --color-link-underline: rgba(228, 228, 228, 0.25);

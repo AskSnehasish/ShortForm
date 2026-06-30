@@ -226,7 +226,7 @@
               header.classList.add('site-header--hidden');
               headerHidden = true;
             }
-          } else if (currentScrollY < lastScrollY) {
+          } else if (currentScrollY < lastScrollY - 20) {
             if (headerHidden) {
               header.classList.remove('site-header--hidden');
               headerHidden = false;
@@ -266,18 +266,6 @@
           navDropdown.appendChild(clone);
         }
       }
-    }
-
-    // Also add Subscribe/Account link to dropdown
-    var subscribeLink = document.querySelector('#nav-subscribe');
-    if (subscribeLink) {
-      var subClone = subscribeLink.cloneNode(true);
-      subClone.removeAttribute('id');
-      subClone.addEventListener('click', function () {
-        navDropdown.classList.remove('open');
-        navMoreToggle.setAttribute('aria-expanded', 'false');
-      });
-      navDropdown.appendChild(subClone);
     }
 
     // Toggle dropdown
