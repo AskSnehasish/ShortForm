@@ -53,7 +53,7 @@
       '[data-testid="signin-button"] {',
       '  color: ' + textColor + ' !important;',
       '}',
-      '',
+
       '.ProseMirror p.is-editor-empty:first-child:before {',
       '  color: ' + textMuted + ' !important;',
       '}',
@@ -90,6 +90,12 @@
       '.dark-mode [data-testid="signin-button"],',
       '.dark [data-testid="signin-button"] {',
       '  color: ' + textSecondaryDark + ' !important;',
+      '}',
+
+      '.dark-mode [data-testid="signup-button"],',
+      '.dark [data-testid="signup-button"] {',
+      '  background: #fff !important;',
+      '  color: ' + textColorDark + ' !important;',
       '}',
       '',
       '.dark-mode .gh-comment-content p.is-editor-empty:first-child:before {',
