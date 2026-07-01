@@ -7,7 +7,7 @@
   --color-border: rgba(255, 255, 255, 0.08);
   --color-code-bg: #f6f6f6;
   --color-selection: #dbeafe;
-  --color-link-underline: rgba(34, 34, 34, 0.25);
+  --color-link-underline: rgba(34, 34, 34, 0.12);
 
   /* Typography */
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -759,7 +759,7 @@ h1.site-logo {
   transition: color 250ms ease;
 }
 
-.site-nav a::after,
+/* .site-nav a::after,
 .site-nav ul li a::after {
   content: '';
   position: absolute;
@@ -771,7 +771,7 @@ h1.site-logo {
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 250ms ease;
-}
+} */
 
 .nav-link {
   position: relative;
@@ -779,7 +779,7 @@ h1.site-logo {
   align-items: center;
 }
 
-.nav-link::after {
+/* .nav-link::after {
   content: '';
   position: absolute;
   bottom: 2px;
@@ -790,7 +790,7 @@ h1.site-logo {
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 250ms ease;
-}
+} */
 
 .site-nav a[aria-current="page"],
 .site-nav ul li a[aria-current="page"] {
@@ -2220,7 +2220,7 @@ textarea.form-input {
   --color-border: rgba(255, 255, 255, 0.08);
   --color-code-bg: #232323;
   --color-selection: #334155;
-  --color-link-underline: rgba(228, 228, 228, 0.25);
+  --color-link-underline: rgba(228, 228, 228, 0.12);
 }
 
 .dark-mode .btn {
