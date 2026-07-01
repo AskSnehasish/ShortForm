@@ -10,30 +10,23 @@
   }
 
   function getSignupColor() {
-    var ac = getCSSProp('--color-accent', '#000');
+    var ac = getCSSProp('--color-accent', '#2563eb');
     var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(ac);
-    var br = m ? (parseInt(m[1],16)*299+parseInt(m[2],16)*587+parseInt(m[3],16)*114)/2550 : 128;
-    return br > 78 ? '#fff' : ac;
+    if (!m) return '#fff';
+    var br = (parseInt(m[1],16)*299 + parseInt(m[2],16)*587 + parseInt(m[3],16)*114) / 2550;
+    return br > 55 ? '#1a1a1a' : '#fff';
   }
 
   function buildCSS() {
-    var textColor = getCSSProp('--color-text', '#000');
-    var textSecondary = getCSSProp('--color-text-secondary', '#525252');
-    var textMuted = getCSSProp('--color-text-muted', 'rgba(0,0,0,0.4)');
+    var accentColor = getCSSProp('--color-accent', '#2563eb');
+    var textColor = getCSSProp('--color-text', '#222');
+    var textSecondary = getCSSProp('--color-text-secondary', '#666');
+    var textMuted = getCSSProp('--color-text-muted', '#888');
     var bgColor = getCSSProp('--color-bg', '#fff');
-    var borderColor = getCSSProp('--color-border', '#e5e5e5');
-    var textColorDark = getCSSProp('--color-text-dark', 'rgba(255,255,255,0.85)');
-    var textSecondaryDark = getCSSProp('--color-text-secondary-dark', 'rgba(255,255,255,0.6)');
-    var textMutedDark = getCSSProp('--color-text-muted-dark', 'rgba(255,255,255,0.5)');
-    var bgDark = getCSSProp('--color-bg-dark', '#1a1a1a');
-    var borderDark = getCSSProp('--color-border-dark', '#333');
+    var borderColor = getCSSProp('--color-border', 'rgba(0,0,0,0.08)');
+    var linkUnderline = getCSSProp('--color-link-underline', 'rgba(34,34,34,0.12)');
 
     var signupColor = getSignupColor();
-
-    var r = hexToRgb(textColor);
-    if (r && bgColor === textColor) {
-      textColor = 'hsl(' + r.h + ', ' + Math.min(r.s * 0.08, 6) + '%, 92%)';
-    }
 
     return [
       '.text-black, .text-neutral-900, .text-neutral-900\\\\/50, .text-neutral-900\\\\/60, .text-neutral-900\\\\/55,',
@@ -62,61 +55,41 @@
       '[data-testid="signin-button"] {',
       '  color: ' + textColor + ' !important;',
       '}',
-
+      '',
       ':root button[data-testid="signup-button"] {',
+      '  background: ' + accentColor + ' !important;',
       '  color: ' + signupColor + ' !important;',
+      '  border-color: ' + accentColor + ' !important;',
       '}',
-
+      '',
+      '.gh-comment-content a {',
+      '  color: ' + textColor + ' !important;',
+      '  text-decoration: underline !important;',
+      '  text-underline-offset: 3px !important;',
+      '  text-decoration-thickness: 2px !important;',
+      '  text-decoration-color: ' + linkUnderline + ' !important;',
+      '  transition: text-decoration-color 250ms ease !important;',
+      '}',
+      '.gh-comment-content a:hover {',
+      '  text-decoration-color: ' + accentColor + ' !important;',
+      '}',
+      '',
+      'input:focus, textarea:focus {',
+      '  outline: none !important;',
+      '  border-color: ' + accentColor + ' !important;',
+      '}',
+      '',
+      'button:focus-visible {',
+      '  outline: 2px solid ' + accentColor + ' !important;',
+      '  outline-offset: 2px !important;',
+      '}',
+      '',
       '.ProseMirror p.is-editor-empty:first-child:before {',
       '  color: ' + textMuted + ' !important;',
       '}',
       '',
-      '.dark-mode .text-black, .dark .text-black,',
-      '.dark-mode .text-neutral-900, .dark .text-neutral-900,',
-      '.dark-mode .text-\\[2\\.2rem\\], .dark .text-\\[2\\.2rem\\], .dark-mode .text-2xl, .dark .text-2xl,',
-      '.dark-mode h1, .dark h1, .dark-mode h2, .dark h2, .dark-mode h3, .dark h3, .dark-mode h4, .dark h4,',
-      '.dark-mode .dark\\\\:text-white, .dark .dark\\\\:text-white,',
-      '.dark-mode .dark\\\\:text-neutral-100, .dark .dark\\\\:text-neutral-100,',
-      '.dark-mode .dark\\\\:text-neutral-200, .dark .dark\\\\:text-neutral-200,',
-      '.dark-mode .dark\\\\:text-neutral-300, .dark .dark\\\\:text-neutral-300,',
-      '.dark-mode .dark\\\\:text-\\[rgba\\(255\\,255\\,255\\,0\\.85\\)\\], .dark .dark\\\\:text-\\[rgba\\(255\\,255\\,255\\,0\\.85\\)\\],',
-      '.dark-mode .dark\\\\:text-white\\\\/85, .dark .dark\\\\:text-white\\\\/85,',
-      '.dark-mode .dark\\\\:text-white\\\\/90, .dark .dark\\\\:text-white\\\\/90,',
-      '.dark-mode .dark\\\\:text-white\\\\/70, .dark .dark\\\\:text-white\\\\/70 {',
-      '  color: ' + textColorDark + ' !important;',
-      '}',
-      '',
-      '.dark-mode .text-neutral-600, .dark .text-neutral-600,',
-      '.dark-mode .text-neutral-700, .dark .text-neutral-700,',
-      '.dark-mode .text-neutral-500, .dark .text-neutral-500,',
-      '.dark-mode .dark\\\\:text-neutral-400, .dark .dark\\\\:text-neutral-400,',
-      '.dark-mode .dark\\\\:text-\\[rgba\\(255\\,255\\,255\\,0\\.5\\)\\], .dark .dark\\\\:text-\\[rgba\\(255\\,255\\,255\\,0\\.5\\)\\] {',
-      '  color: ' + textSecondaryDark + ' !important;',
-      '}',
-      '',
-      '.dark-mode .dark\\\\:text-white\\\\/60, .dark .dark\\\\:text-white\\\\/60,',
-      '.dark-mode .dark\\\\:text-white\\\\/50, .dark .dark\\\\:text-white\\\\/50,',
-      '.dark-mode .dark\\\\:text-white\\\\/30, .dark .dark\\\\:text-white\\\\/30 {',
-      '  color: ' + textMutedDark + ' !important;',
-      '}',
-      '',
-      '.dark-mode [data-testid="signin-button"],',
-      '.dark [data-testid="signin-button"] {',
-      '  color: ' + textSecondaryDark + ' !important;',
-      '}',
-
-      '.dark-mode button[data-testid="signup-button"],',
-      '.dark button[data-testid="signup-button"] {',
-      '  background: #fff !important;',
-      '  color: ' + textColorDark + ' !important;',
-      '}',
-      '',
-      '.dark-mode .gh-comment-content p.is-editor-empty:first-child:before {',
-      '  color: ' + textMutedDark + ' !important;',
-      '}',
-      '',
       '#ghost-comments-root section {',
-      '  --gh-accent-color: ' + getCSSProp('--color-accent', 'var(--gh-accent-color, #000)') + ';',
+      '  --gh-accent-color: ' + accentColor + ';',
       '}'
     ].join('\n');
   }
