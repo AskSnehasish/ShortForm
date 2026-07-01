@@ -39,37 +39,12 @@
         meta.setAttribute('content', '#1a1a1a');
       } else {
         meta.setAttribute('content', '{{@site.accent_color}}');
-        var accentColor = '{{@site.accent_color}}';
-        var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(accentColor);
-        if (m) {
-          var rr = parseInt(m[1], 16) / 255, rg = parseInt(m[2], 16) / 255, rb = parseInt(m[3], 16) / 255;
-          var max = Math.max(rr, rg, rb), min = Math.min(rr, rg, rb);
-          var h = 0, s = 0, l = (max + min) / 2;
-          if (max !== min) {
-            var d = max - min;
-            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-            if (max === rr) h = ((rg - rb) / d + (rg < rb ? 6 : 0)) / 6;
-            else if (max === rg) h = ((rb - rr) / d + 2) / 6;
-            else h = ((rr - rg) / d + 4) / 6;
-          }
-          h = Math.round(h * 360); s = Math.round(s * 100); l = Math.round(l * 100);
-          var useLightText = l <= 60;
-          var ts = Math.min(s * 0.08, 6);
-          var tl = useLightText ? 92 : 14;
-          html.style.setProperty('--color-bg', accentColor);
-          html.style.setProperty('--color-text', 'hsl(' + h + ', ' + ts + '%, ' + tl + '%)');
-          html.style.setProperty('--color-text-secondary', 'hsl(' + h + ', ' + ts + '%, ' + (useLightText ? 80 : 28) + '%)');
-          html.style.setProperty('--color-text-muted', 'hsl(' + h + ', ' + ts + '%, ' + (useLightText ? 65 : 42) + '%)');
-          html.style.setProperty('--color-code-bg', 'hsl(' + h + ', ' + Math.min(s * 0.15, 8) + '%, ' + (useLightText ? 38 : 72) + '%)');
-          html.style.setProperty('--color-selection', 'hsl(' + h + ', 30%, ' + (useLightText ? 80 : 25) + ')');
-          html.style.setProperty('--color-link-underline', 'hsla(' + h + ', ' + ts + '%, ' + tl + '%, 0.12)');
-        }
       }
     })();
   </script>
 
   <style>
-    :root{--color-bg:#fff;--color-text:#222;--color-text-secondary:#666;--color-text-muted:#888;--color-border:rgba(255,255,255,0.08);--color-code-bg:#f6f6f6;--color-selection:#dbeafe;--color-link-underline:rgba(34,34,34,0.12);--font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--font-mono:'SF Mono','Fira Code','Fira Mono','Roboto Mono','Courier New',monospace;--text-xs:.75rem;--text-sm:.875rem;--text-base:1.1875rem;--text-lg:1.25rem;--text-xl:1.5rem;--text-2xl:1.75rem;--text-3xl:2rem;--text-4xl:2.5rem;--text-5xl:2.625rem;--space-1:8px;--space-2:16px;--space-3:24px;--space-4:32px;--space-5:40px;--space-6:48px;--space-7:64px;--space-8:80px;--space-9:96px;--content-width:700px;--content-wide:920px;--content-padding:24px;--leading-tight:1.3;--leading-normal:1.5;--leading-relaxed:1.65;--transition-fast:150ms ease;--transition-base:250ms ease;--radius-sm:2px;--radius-md:4px}
+    :root{--color-bg:#fff;--color-text:#222;--color-text-secondary:#666;--color-text-muted:#888;--color-border:rgba(0,0,0,0.08);--color-code-bg:#f6f6f6;--color-selection:#dbeafe;--color-link-underline:rgba(34,34,34,0.12);--font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--font-mono:'SF Mono','Fira Code','Fira Mono','Roboto Mono','Courier New',monospace;--text-xs:.75rem;--text-sm:.875rem;--text-base:1.1875rem;--text-lg:1.25rem;--text-xl:1.5rem;--text-2xl:1.75rem;--text-3xl:2rem;--text-4xl:2.5rem;--text-5xl:2.625rem;--space-1:8px;--space-2:16px;--space-3:24px;--space-4:32px;--space-5:40px;--space-6:48px;--space-7:64px;--space-8:80px;--space-9:96px;--content-width:700px;--content-wide:920px;--content-padding:24px;--leading-tight:1.3;--leading-normal:1.5;--leading-relaxed:1.65;--transition-fast:150ms ease;--transition-base:250ms ease;--radius-sm:2px;--radius-md:4px}
     @media(max-width:768px){:root{--text-base:1.125rem;--text-4xl:2.125rem;--text-5xl:2.25rem;--content-padding:20px}}
     @media(max-width:576px){:root{--text-base:1.0625rem;--text-4xl:1.75rem;--text-5xl:2rem;--content-padding:16px}}
     @media(max-width:400px){:root{--text-base:1rem;--text-sm:.8125rem;--text-xs:.6875rem;--content-padding:12px}}

@@ -11,74 +11,11 @@
   var colorScheme = (metaScheme && metaScheme.getAttribute('content')) || 'light';
 
   /* ==========================================
-     Accent-based Background (Light Mode)
-     ========================================== */
-
-  var html = document.documentElement;
-  var accentProps = {};
-
-  function hexToRgb(hex) {
-    var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return m ? { r: parseInt(m[1], 16), g: parseInt(m[2], 16), b: parseInt(m[3], 16) } : null;
-  }
-
-  function rgbToHsl(r, g, b) {
-    r /= 255; g /= 255; b /= 255;
-    var max = Math.max(r, g, b), min = Math.min(r, g, b);
-    var h, s, l = (max + min) / 2;
-    if (max === min) { h = s = 0; }
-    else {
-      var d = max - min;
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-      switch (max) {
-        case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
-        case g: h = ((b - r) / d + 2) / 6; break;
-        case b: h = ((r - g) / d + 4) / 6; break;
-      }
-    }
-    return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
-  }
-
-  function computeAccentProps() {
-    if (!accentColor) return;
-    var r = hexToRgb(accentColor);
-    if (!r) return;
-    var hsl = rgbToHsl(r.r, r.g, r.b);
-    var h = hsl.h, s = hsl.s, l = hsl.l;
-    var useLightText = l <= 60;
-    var ts = Math.min(s * 0.08, 6);
-    var tl = useLightText ? 92 : 14;
-    var borderSat = Math.min(s * 0.25, 15);
-    var borderL = useLightText ? 45 : 62;
-    accentProps = {
-      '--color-bg': accentColor,
-      '--color-text': 'hsl(' + h + ', ' + ts + '%, ' + tl + '%)',
-      '--color-text-secondary': 'hsl(' + h + ', ' + ts + '%, ' + (useLightText ? 80 : 28) + '%)',
-      '--color-text-muted': 'hsl(' + h + ', ' + ts + '%, ' + (useLightText ? 65 : 42) + '%)',
-      '--color-border': 'hsl(' + h + ', ' + borderSat + '%, ' + borderL + '%)',
-      '--color-code-bg': 'hsl(' + h + ', ' + Math.min(s * 0.15, 8) + '%, ' + (useLightText ? '38' : '72') + '%)',
-      '--color-selection': 'hsl(' + h + ', 30%, ' + (useLightText ? 80 : 25) + ')',
-      '--color-link-underline': 'hsla(' + h + ', ' + ts + '%, ' + tl + '%, 0.25)'
-    };
-  }
-
-  computeAccentProps();
-
-  var themeColorMeta = document.querySelector('meta[name="theme-color"]');
-
-  function applyAccent() {
-    if (!accentColor) return;
-    for (var p in accentProps) html.style.setProperty(p, accentProps[p]);
-  }
-
-  function removeAccent() {
-    for (var p in accentProps) html.style.removeProperty(p);
-  }
-
-  /* ==========================================
      Dark Mode
      ========================================== */
 
+  var html = document.documentElement;
+  var themeColorMeta = document.querySelector('meta[name="theme-color"]');
   var themeToggle = document.querySelector('[data-theme-toggle]');
 
   function getPreferredTheme() {
@@ -94,10 +31,8 @@
   function setTheme(theme) {
     if (theme === 'dark') {
       html.classList.add('dark-mode');
-      removeAccent();
       if (themeColorMeta) themeColorMeta.setAttribute('content', '#1a1a1a');
     } else {
-      applyAccent();
       html.classList.remove('dark-mode');
       if (themeColorMeta) {
         themeColorMeta.setAttribute('content', accentColor || '#ffffff');
