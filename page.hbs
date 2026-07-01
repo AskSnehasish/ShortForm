@@ -7,6 +7,12 @@
     {{#if custom_excerpt}}
       <p class="post-excerpt" itemprop="description">{{custom_excerpt}}</p>
     {{/if}}
+
+    <div class="post-meta">
+      <time datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished">{{date format="MMM D, YYYY"}}</time>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+    </div>
   </header>
 
   {{> "toc"}}
