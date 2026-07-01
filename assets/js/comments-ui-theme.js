@@ -122,7 +122,7 @@
   }
 
   var injectionCount = 0;
-  var maxInjections = 20;
+  var maxInjections = 100;
 
   function injectStyles() {
     injectionCount++;
@@ -144,24 +144,15 @@
         doc.head.appendChild(style);
       }
       style.textContent = buildCSS();
-
-      var signupBtn = doc.querySelector('[data-testid="signup-button"]');
-      if (signupBtn) {
-        signupBtn.style.setProperty('color', getSignupColor(), 'important');
-      }
     } catch(e) {}
   }
 
   function pollInject() {
     injectStyles();
     if (injectionCount < maxInjections) {
-      setTimeout(pollInject, 500);
+      setTimeout(pollInject, 100);
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', pollInject);
-  } else {
-    pollInject();
-  }
+  pollInject();
 })();

@@ -35,6 +35,10 @@
         "type": "boolean",
         "default": true
       },
+      "show_featured_image": {
+        "type": "boolean",
+        "default": true
+      },
       "color_scheme": {
         "type": "select",
         "options": ["light", "dark", "auto"],

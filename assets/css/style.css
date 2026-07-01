@@ -329,6 +329,16 @@ small {
   font-size: var(--text-sm);
 }
 
+.featured-image {
+  margin: 0 0 32px;
+}
+
+.featured-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
 .post-content {
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
