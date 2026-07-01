@@ -9,6 +9,13 @@
     return val || fallback;
   }
 
+  function getSignupColor() {
+    var ac = getCSSProp('--color-accent', '#000');
+    var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(ac);
+    var br = m ? (parseInt(m[1],16)*299+parseInt(m[2],16)*587+parseInt(m[3],16)*114)/2550 : 128;
+    return br > 78 ? '#fff' : ac;
+  }
+
   function buildCSS() {
     var textColor = getCSSProp('--color-text', '#000');
     var textSecondary = getCSSProp('--color-text-secondary', '#525252');
@@ -20,6 +27,8 @@
     var textMutedDark = getCSSProp('--color-text-muted-dark', 'rgba(255,255,255,0.5)');
     var bgDark = getCSSProp('--color-bg-dark', '#1a1a1a');
     var borderDark = getCSSProp('--color-border-dark', '#333');
+
+    var signupColor = getSignupColor();
 
     var r = hexToRgb(textColor);
     if (r && bgColor === textColor) {
@@ -52,6 +61,10 @@
       '',
       '[data-testid="signin-button"] {',
       '  color: ' + textColor + ' !important;',
+      '}',
+
+      ':root button[data-testid="signup-button"] {',
+      '  color: ' + signupColor + ' !important;',
       '}',
 
       '.ProseMirror p.is-editor-empty:first-child:before {',
@@ -92,8 +105,8 @@
       '  color: ' + textSecondaryDark + ' !important;',
       '}',
 
-      '.dark-mode [data-testid="signup-button"],',
-      '.dark [data-testid="signup-button"] {',
+      '.dark-mode button[data-testid="signup-button"],',
+      '.dark button[data-testid="signup-button"] {',
       '  background: #fff !important;',
       '  color: ' + textColorDark + ' !important;',
       '}',
@@ -131,6 +144,11 @@
         doc.head.appendChild(style);
       }
       style.textContent = buildCSS();
+
+      var signupBtn = doc.querySelector('[data-testid="signup-button"]');
+      if (signupBtn) {
+        signupBtn.style.setProperty('color', getSignupColor(), 'important');
+      }
     } catch(e) {}
   }
 
