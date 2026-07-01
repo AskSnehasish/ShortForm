@@ -2,20 +2,20 @@
   <div class="pagination-inner">
     {{#if pagination.prev}}
       {{#get "posts" limit="1" include="title" page=pagination.prev}}
-        <a class="pagination-link pagination-link--prev" href="{{page_url ../pagination.prev}}">
+        <div class="pagination-link pagination-link--prev">
           <span class="pagination-label">&larr; {{t "Next read"}}</span>
-          <span class="pagination-title">{{#foreach posts}}{{title}}{{/foreach}}</span>
-        </a>
+          <a class="pagination-title" href="{{page_url ../pagination.prev}}">{{#foreach posts}}{{title}}{{/foreach}}</a>
+        </div>
       {{/get}}
     {{else}}
       <span class="pagination-placeholder"></span>
     {{/if}}
     {{#if pagination.next}}
       {{#get "posts" limit="1" include="title" page=pagination.next}}
-        <a class="pagination-link pagination-link--next" href="{{page_url ../pagination.next}}">
+        <div class="pagination-link pagination-link--next">
           <span class="pagination-label">{{t "Continue reading"}} &rarr;</span>
-          <span class="pagination-title">{{#foreach posts}}{{title}}{{/foreach}}</span>
-        </a>
+          <a class="pagination-title" href="{{page_url ../pagination.next}}">{{#foreach posts}}{{title}}{{/foreach}}</a>
+        </div>
       {{/get}}
     {{else}}
       <span class="pagination-placeholder"></span>
