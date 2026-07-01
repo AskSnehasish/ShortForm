@@ -2408,3 +2408,10 @@ textarea.form-input {
     transform: none;
   }
 }
+
+.preload,
+.preload *,
+.preload *::before,
+.preload *::after {
+  transition: none !important;
+}
