@@ -19,6 +19,11 @@
     {{#if @custom.show_featured_image}}
       <figure class="featured-image">
         <img src="{{img_url feature_image size="xl"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" />
+        {{#if feature_image_caption}}
+          <figcaption>{{{feature_image_caption}}}</figcaption>
+        {{else if feature_image_alt}}
+          <figcaption>{{feature_image_alt}}</figcaption>
+        {{/if}}
       </figure>
     {{/if}}
   {{/if}}

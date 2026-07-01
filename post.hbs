@@ -28,6 +28,11 @@
     {{#if @custom.show_featured_image}}
       <figure class="featured-image">
         <img src="{{img_url feature_image size="xl"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" />
+        {{#if feature_image_caption}}
+          <figcaption>{{{feature_image_caption}}}</figcaption>
+        {{else if feature_image_alt}}
+          <figcaption>{{feature_image_alt}}</figcaption>
+        {{/if}}
       </figure>
     {{/if}}
   {{/if}}
@@ -42,7 +47,7 @@
   {{> "comments"}}
   {{> "related-posts"}}
 
-  <nav class="pagination" role="navigation" aria-label="{{t "Post navigation"}}">
+  <nav class="pagination reveal" role="navigation" aria-label="{{t "Post navigation"}}">
     <div class="pagination-inner">
       <div class="pagination-link pagination-link--prev">
         {{#next_post}}

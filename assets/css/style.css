@@ -340,6 +340,14 @@ small {
   border-radius: var(--radius-md);
 }
 
+.featured-image figcaption {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+  line-height: var(--leading-normal);
+}
+
 .post-content {
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
@@ -1385,19 +1393,30 @@ textarea.form-input {
   gap: 2px;
   color: var(--color-text-secondary);
   font-weight: 500;
-  transition: color var(--transition-base);
+  transition: border-color var(--transition-base), color var(--transition-base);
   text-decoration: none;
   max-width: 45%;
+  border-left: 2px solid transparent;
+  padding-left: var(--space-2);
 }
 
 .pagination-link:hover {
   color: var(--color-text);
+  border-left-color: var(--color-accent);
   text-decoration: none;
 }
 
 .pagination-link--next {
   text-align: right;
   align-items: flex-end;
+  border-left: none;
+  border-right: 2px solid transparent;
+  padding-left: 0;
+  padding-right: var(--space-2);
+}
+
+.pagination-link--next:hover {
+  border-right-color: var(--color-accent);
 }
 
 .pagination-label {

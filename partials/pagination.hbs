@@ -1,8 +1,8 @@
-<nav class="pagination" role="navigation" aria-label="{{t "Pagination"}}">
+<nav class="pagination reveal" role="navigation" aria-label="{{t "Pagination"}}">
   <div class="pagination-inner">
     {{#if pagination.prev}}
-      {{#get "posts" limit="1" include="title" page=pagination.prev}}
-        <div class="pagination-link pagination-link--prev">
+      {{#get "posts" limit="1" page=pagination.prev}}
+        <div class="pagination-link pagination-link--prev reveal">
           <span class="pagination-label">&larr; {{t "Next read"}}</span>
           <a class="pagination-title" href="{{page_url ../pagination.prev}}">{{#foreach posts}}{{title}}{{/foreach}}</a>
         </div>
@@ -11,8 +11,8 @@
       <span class="pagination-placeholder"></span>
     {{/if}}
     {{#if pagination.next}}
-      {{#get "posts" limit="1" include="title" page=pagination.next}}
-        <div class="pagination-link pagination-link--next">
+      {{#get "posts" limit="1" page=pagination.next}}
+        <div class="pagination-link pagination-link--next reveal">
           <span class="pagination-label">{{t "Continue reading"}} &rarr;</span>
           <a class="pagination-title" href="{{page_url ../pagination.next}}">{{#foreach posts}}{{title}}{{/foreach}}</a>
         </div>

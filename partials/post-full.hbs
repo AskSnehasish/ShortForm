@@ -21,6 +21,11 @@
         <a href="{{url}}">
           <img src="{{img_url feature_image size="lg"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" loading="lazy" />
         </a>
+        {{#if feature_image_caption}}
+          <figcaption>{{{feature_image_caption}}}</figcaption>
+        {{else if feature_image_alt}}
+          <figcaption>{{feature_image_alt}}</figcaption>
+        {{/if}}
       </figure>
     {{/if}}
   {{/if}}
