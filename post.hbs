@@ -50,19 +50,19 @@
   <nav class="pagination reveal" role="navigation" aria-label="{{t "Post navigation"}}">
     <div class="pagination-inner">
       {{#next_post}}
-        <div class="pagination-link pagination-link--prev reveal">
+        <a class="pagination-link pagination-link--prev reveal" href="{{url}}">
           <span class="pagination-label">&larr; {{t "Next read"}}</span>
-          <a class="pagination-title" href="{{url}}">{{title}}</a>
-        </div>
+          <span class="pagination-title">{{title}}</span>
+        </a>
       {{else}}
         <span class="pagination-placeholder"></span>
       {{/next_post}}
 
       {{#prev_post}}
-        <div class="pagination-link pagination-link--next reveal">
+        <a class="pagination-link pagination-link--next reveal" href="{{url}}">
           <span class="pagination-label">{{t "Continue reading"}} &rarr;</span>
-          <a class="pagination-title" href="{{url}}">{{title}}</a>
-        </div>
+          <span class="pagination-title">{{title}}</span>
+        </a>
       {{else}}
         <span class="pagination-placeholder"></span>
       {{/prev_post}}

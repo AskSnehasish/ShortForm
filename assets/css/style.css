@@ -1508,18 +1508,13 @@ textarea.form-input {
 .pagination-title {
   font-size: var(--text-xs);
   font-weight: 600;
-  color: var(--color-text-muted) !important;
+  color: var(--color-text-muted);
   line-height: var(--leading-tight);
-  text-decoration: none !important;
-  transition: color var(--transition-base) !important;
-}
-
-.pagination-title:hover {
-  color: var(--color-text) !important;
+  transition: color var(--transition-base);
 }
 
 .pagination-link:hover .pagination-title {
-  color: var(--color-text) !important;
+  color: var(--color-text);
 }
 
 .pagination-placeholder {
